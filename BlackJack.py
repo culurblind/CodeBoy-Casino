@@ -1,6 +1,6 @@
 #BlackJack
 
-# linl numbers to cards
+# link numbers to cards
 cards = {
     "1" : 1,
     "2" : 2,
