@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #Roulette
 
 wheel = {
@@ -42,3 +43,6 @@ wheel = {
 }
 x = 0
 
+=======
+#Roulette
+>>>>>>> d6c617bfdb1ae194de768fdac9843842dd26959a
