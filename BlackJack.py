@@ -1,4 +1,20 @@
 #BlackJack
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import random
 import time
 
