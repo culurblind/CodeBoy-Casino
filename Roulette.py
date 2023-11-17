@@ -1,4 +1,7 @@
 #Roulette
+import random
+
+game_over = False
 
 wheel = {
     0 : "G",
@@ -40,8 +43,7 @@ wheel = {
     36 : "R",
 
 }
-x = 0
 
-=======
-#Roulette
->>>>>>> d6c617bfdb1ae194de768fdac9843842dd26959a
+while game_over == False:
+    #place holder
+    x = 0
