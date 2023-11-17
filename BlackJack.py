@@ -2,11 +2,11 @@
 import random
 import time
 
-
+# game over variable
 game_over = False
 
 
-
+# mapping cards to numerical values
 def values(val):
     if val == "2":
         return 2
@@ -61,6 +61,7 @@ while game_over == False:
     print("total = " + str(sum))
     time.sleep(1)
     
+    # dealers cards
     dealer_card = cards[random.randint(0, 12)]
     dealer_card_val = values(dealer_card)
     dealer_sum = dealer_card_val
@@ -68,6 +69,7 @@ while game_over == False:
     dealer_hand.append(dealer_card)
     turn = False
     
+    # case - black jack
     if sum == 21:
         print("black jack")
         dealer_card = cards[random.randint(0, 12)]
@@ -76,6 +78,7 @@ while game_over == False:
         dealer_sum += dealer_card_val
         print("dealer total: " + str(dealer_sum))
         if dealer_sum == 21:
+            # dealer gets a black jack too
             print("push")
             balance += bet
         else:
@@ -88,6 +91,7 @@ while game_over == False:
     if turn == True:
         while turn == True:
             decision = input("stand, hit, double, or split? ")
+            # case 1 - stand
             if decision == "stand":
                 while dealer_sum < 17:
                     dealer_card = cards[random.randint(0, 12)]
@@ -118,6 +122,7 @@ while game_over == False:
                     print("push")
                     balance += bet
                     turn = False
+            # case 2 - hit
             elif decision == "hit":
                 extra_card = cards[random.randint(0, 12)]
                 print(extra_card)
@@ -148,6 +153,7 @@ while game_over == False:
                         balance += 2.5*bet
                         balance = int(balance)
                         turn = False
+            # case 3 - double (only if us have enough to double)
             elif decision == "double":
                 balance -= bet
                 if balance < 0:
@@ -215,6 +221,7 @@ while game_over == False:
                             print("push")
                             balance += bet
                             turn = False
+            # case 4 - split (if 2 cards have same numerical value)
             elif decision == "split":
                 if card1_val == card2_val:
                     balance -= bet
@@ -233,7 +240,7 @@ while game_over == False:
                         print("first split: " + str(split_card1))
                         sum1 = card1_val + split_card1_val
                         print("total for first split: " + str(sum1))
-                        split_decision1 = input("stand, hit")
+                        split_decision1 = input("stand, hit ")
                         while split_decision1 == "hit":
                             extra_card = cards[random.randint(0, 12)]
                             split_hand1.append(extra_card)
@@ -252,7 +259,7 @@ while game_over == False:
                                     break
                             elif sum1 == 21:
                                 split_decision1 = "stand"
-                            split_decision1 = input("stand, hit")
+                            split_decision1 = input("stand, hit ")
                         if split_decision1 == "stand":
                             split_card2 = cards[random.randint(0, 12)]
                             split_hand2.append(split_card2)
@@ -260,7 +267,7 @@ while game_over == False:
                             print("second split: " + str(split_card2))
                             sum2 = card2_val + split_card2_val
                             print("total for second cards: " + str(sum2))
-                            split_decision2 = input("stand, hit")
+                            split_decision2 = input("stand, hit ")
                             while split_decision2 == "hit":
                                 extra_card = cards[random.randint(0, 12)]
                                 split_hand2.append(extra_card)
@@ -289,7 +296,7 @@ while game_over == False:
                                         break
                                 elif sum2 == 21:
                                     split_decision2 = "stand"
-                                split_decision2 = input("stand, hit")
+                                split_decision2 = input("stand or hit? ")
                             if split_decision2 == "stand":
                                 while dealer_sum < 17:
                                     dealer_card = cards[random.randint(0, 12)]
