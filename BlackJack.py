@@ -1,4 +1,7 @@
-#BlackJack
+#
+#BlackJack Game
+#
+#BlackJack game operates like a 
 import random
 import time
 
