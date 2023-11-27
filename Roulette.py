@@ -3,6 +3,7 @@ import random
 import time
 
 game_over = False
+round_over = False
 
 wheel = {
     0 : "G",
@@ -63,30 +64,31 @@ bets = {
 balance = 1000
 
 while game_over == False:
+    while round_over == False:
 
-    # bet
-    print("balance: " + str(balance))
-    bet = int(input("how much do you want to bet? "))
-    balance -= bet
+        # bet
+        print("balance: " + str(balance))
+        bet = int(input("how much do you want to bet? "))
+        balance -= bet
 
-    typeOfBet = input('''
-    Pick A Bet:
-        Straight Up , Split , Street , Corners , Six-Line Bet , 
-        Column , Dozen , Odd , Even , Red , Black , 1-18 , 19-36
-    ''')
+        typeOfBet = input('''
+        Pick A Bet:
+            Straight Up , Split , Street , Corners , Six-Line Bet , 
+            Column , Dozen , Odd , Even , Red , Black , 1-18 , 19-36
+        ''')
 
-    placeHolder = True
-    while (placeHolder):
-        if (bets.get(typeOfBet) == None):
-            print("That is not a valid bet")
-            typeOfBet = input('''
-            Pick A Bet:
-                Straight Up , Split , Street , Corners , Six-Line Bet , 
-                Column , Dozen , Odd , Even , Red , Black , 1-18 , 19-36
-            ''')
-        else:
-            placeHolder = False
-    
-    if balance <= 0:
-        print("don't have that much money game over")
-        game_over = True
+        placeHolder = True
+        while (placeHolder):
+            if (bets.get(typeOfBet) == None):
+                print("That is not a valid bet")
+                typeOfBet = input('''
+                Pick A Bet:
+                    Straight Up , Split , Street , Corners , Six-Line Bet , 
+                    Column , Dozen , Odd , Even , Red , Black , 1-18 , 19-36
+                ''')
+            else:
+                placeHolder = False
+        
+        if balance <= 0:
+            print("You ran out of money, game over.")
+            game_over = True
