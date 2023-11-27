@@ -45,6 +45,13 @@ while game_over == False:
     print("balance: " + str(balance))
     bet = int(input("how much do you want to bet? "))
     balance -= bet
+    while (balance < 0):
+        print("You do not have that much money")
+        balance += bet
+        print("balance: " + str(balance))
+        bet = int(input("how much do you want to bet? "))
+        balance -= bet
+
     
     hand = []
     dealer_hand = []
