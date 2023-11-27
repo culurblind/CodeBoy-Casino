@@ -46,19 +46,19 @@ wheel = {
 }
 
 bets = {
-    "Straight Up" : 35,
-    "Split" : 17,
-    "Street" : 11,
-    "Corners" : 8,
-    "Six-Line Bet" : 5,
-    "Column" : 2,
-    "Dozen" : 2,
-    "Odd" : 1,
-    "Even" : 1,
-    "Red" : 1,
-    "Black" : 1,
-    "1-18" : 1,
-    "19-36" : 1
+    "Straight Up" : 36,
+    "Split" : 18,
+    "Street" : 12,
+    "Corners" : 9,
+    "Six-Line Bet" : 6,
+    "Column" : 3,
+    "Dozen" : 3,
+    "Odd" : 2,
+    "Even" : 2,
+    "Red" : 2,
+    "Black" : 2,
+    "1-18" : 2,
+    "19-36" : 2
 }
 
 balance = 1000
