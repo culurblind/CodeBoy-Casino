@@ -1,5 +1,6 @@
 #Roulette
 import random
+import time
 
 game_over = False
 
@@ -40,10 +41,52 @@ wheel = {
     33 : "B",
     34 : "R",
     35 : "B",
-    36 : "R",
-
+    36 : "R"
 }
 
+bets = {
+    "Straight Up" : 35,
+    "Split" : 17,
+    "Street" : 11,
+    "Corners" : 8,
+    "Six-Line Bet" : 5,
+    "Column" : 2,
+    "Dozen" : 2,
+    "Odd" : 1,
+    "Even" : 1,
+    "Red" : 1,
+    "Black" : 1,
+    "1-18" : 1,
+    "19-36" : 1
+}
+
+balance = 1000
+
 while game_over == False:
-    #place holder
-    x = 0
+
+    # bet
+    print("balance: " + str(balance))
+    bet = int(input("how much do you want to bet? "))
+    balance -= bet
+
+    typeOfBet = input('''
+    Pick A Bet:
+        Straight Up , Split , Street , Corners , Six-Line Bet , 
+        Column , Dozen , Odd , Even , Red , Black , 1-18 , 19-36
+    ''')
+
+    placeHolder = True
+    while (placeHolder):
+        if (bets.get(typeOfBet) == None):
+            print("That is not a valid bet")
+            typeOfBet = input('''
+            Pick A Bet:
+                Straight Up , Split , Street , Corners , Six-Line Bet , 
+                Column , Dozen , Odd , Even , Red , Black , 1-18 , 19-36
+            ''')
+        else:
+            placeHolder = False
+    
+    if balance <= 0:
+        print("don't have that much money game over")
+        game_over = True
