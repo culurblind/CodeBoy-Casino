@@ -41,10 +41,11 @@ cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
 
 balance = 1000
 while game_over == False:
-    #bet
+    # bet
     print("balance: " + str(balance))
     bet = int(input("how much do you want to bet? "))
     balance -= bet
+    # condition if person bets more money than they have
     while (balance < 0):
         print("You do not have that much money")
         balance += bet
@@ -52,10 +53,11 @@ while game_over == False:
         bet = int(input("how much do you want to bet? "))
         balance -= bet
 
-    
+    # lists of hands    
     hand = []
     dealer_hand = []
     
+    # players cards
     card1 = cards[random.randint(0, 12)]
     print(card1)
     hand.append(card1)
