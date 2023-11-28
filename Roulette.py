@@ -1,6 +1,7 @@
 #Roulette
 import random
 import time
+from random import randint
 
 game_over = False
 round_over = False
@@ -65,6 +66,11 @@ balance = 1000
 
 while game_over == False:
 
+    if balance <= 0:
+        print("don't have that much money game over")
+        game_over = True
+        break
+    
     # bet
     print("balance: " + str(balance))
     bet = int(input("how much do you want to bet? "))
@@ -81,6 +87,7 @@ while game_over == False:
         Straight Up , Split , Street , Corners , Six-Line Bet , 
         Column , Dozen , Odd , Even , Red , Black , 1-18 , 19-36
     ''')
+    print()
 
     placeHolder = True
     while (placeHolder):
@@ -91,9 +98,42 @@ while game_over == False:
                 Straight Up , Split , Street , Corners , Six-Line Bet , 
                 Column , Dozen , Odd , Even , Red , Black , 1-18 , 19-36
             ''')
+            print()
         else:
             placeHolder = False
-    
+
+    if (typeOfBet ==  "Straight Up"):
+        isInt = False
+        while(isInt == False):
+            Straight_Up = int(input("Which number between 0 and 36 would you like to bet on? "))
+            if Straight_Up >= 0 and Straight_Up <= 36:
+                isInt = True
+            else:
+                print("That is not a valid roullete number.")
+                print()
+
     if balance <= 0:
         print("don't have that much money game over")
         game_over = True
+
+    def print_slow(str):
+        for letter in str:
+            print(letter)
+            time.sleep(.2)
+
+    print("Time to Roll")
+    print_slow("Rolling... Rolling...")
+    print()
+    value = randint(0, 1)
+    print(value, wheel[value])
+
+    if (typeOfBet == "Straight Up"):
+        if value == Straight_Up:
+            profit = (bet * 36)
+            balance += profit
+            print("You won " + str(profit))
+
+
+
+
+
