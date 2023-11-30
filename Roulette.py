@@ -62,6 +62,11 @@ bets = {
     "19-36" : 2
 }
 
+def print_slow(str):
+        for letter in str:
+            print(letter)
+            time.sleep(.2)
+
 balance = 1000
 
 while game_over == False:
@@ -116,22 +121,21 @@ while game_over == False:
         print("don't have that much money game over")
         game_over = True
 
-    def print_slow(str):
-        for letter in str:
-            print(letter)
-            time.sleep(.2)
-
+    #roullete wheel simulation
     print("Time to Roll")
     print_slow("Rolling... Rolling...")
     print()
     value = randint(0, 1)
     print(value, wheel[value])
 
+    #Straight Up win condition
     if (typeOfBet == "Straight Up"):
         if value == Straight_Up:
             profit = (bet * 36)
             balance += profit
             print("You won " + str(profit))
+
+    #if typeOfBet == 
 
 
 
