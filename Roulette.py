@@ -73,45 +73,63 @@ def slow_print(input_string, delay=None):
         time.sleep(delay)
     print()
 
+#returns true if given value is an int
+def is_int(variable):
+    return isinstance(variable, int)
+
 balance = 1000
 
+#Welcome Statement
+slow_print("Welcome to the Roulette table.")
+slow_print("You have a balance of: " + str(balance))
+
+#Main roulette game
 while game_over == False:
     
     win = False
 
-    # bet
-    slow_print("You have a balance of: " + str(balance))
+    #Betting
     slow_print("How much do you want to bet? ")
     bet = int(input())
+    print()
     balance -= bet
+
+    #Loop if the bet exceeds balance
     while (balance < 0):
-        print("You do not have that much money")
+        slow_print("Slow your roll there pal, you don't have that much money.")
         balance += bet
-        print("balance: " + str(balance))
-        bet = int(input("how much do you want to bet? "))
+        slow_print("Your balance is: " + str(balance))
+        slow_print("How much do you want to bet? ")
+        bet = int(input())
         balance -= bet
 
+    #Friendly Banter
+    if balance == 0:
+        slow_print("Wow, we have a real risk taker here!")
+
+    #Initialize type of roulette bet
     typeOfBet = input('''
-    Pick A Bet:
-        Straight Up , Split , Street , Corners , Six-Line Bet , 
-        Column , Dozen , Odd , Even , Red , Black , 1-18 , 19-36
+    Pick Your Bet:
+        Straight Up, Split, Street, Corners, Six-Line Bet, 
+        Column,  Dozen, Odd, Even,  Red, Black, '1-18', '19-36'
     ''')
     print()
+
 
     placeHolder = True
     while (placeHolder):
         if (bets.get(typeOfBet) == None):
-            print("That is not a valid bet")
+            slow_print("That is not a valid bet")
             typeOfBet = input('''
-            Pick A Bet:
-                Straight Up , Split , Street , Corners , Six-Line Bet , 
-                Column , Dozen , Odd , Even , Red , Black , 1-18 , 19-36
+            Please Bet Again:
+                Straight Up, Split, Street, Corners, Six-Line Bet, 
+                Column,  Dozen, Odd, Even,  Red, Black, '1-18', '19-36'
             ''')
             print()
         else:
             placeHolder = False
 
-    if (typeOfBet ==  "Straight Up"):
+    if (typeOfBet == "Straight Up"):
         isInt = False
         while(isInt == False):
             Straight_Up = int(input("Which number between 0 and 36 would you like to bet on? "))
@@ -121,39 +139,36 @@ while game_over == False:
                 print("That is not a valid roullete number.")
                 print()
 
-    if balance <= 0:
-        print("don't have that much money game over")
-        game_over = True
-
     #roullete wheel simulation
     print("Time to Roll")
-    slow_print("Rolling... Rolling...", 0.1)
+    print()
+    slow_print("Rolling... Rolling... Rolling... ", 0.1)
     print()
     value = randint(0, 36)
     print(value, wheel[value])
+    print()
     
     #Results for Straight Up bet
     if typeOfBet == "Straight Up":
         if value == Straight_Up:
-            profit = (bet * 36)
             win = True
 
     #Results for Odd bet
     if typeOfBet == "Odd":
-        if value % 2 != 0:
-            profit = (bet * 2)
-            win = True
+        if value != 0:
+            if value % 2 != 0:
+                win = True
     
-    #Results for Odd bet
+    #Results for Even bet
     if typeOfBet == "Even":
         if value % 2 == 0:
-            profit = (bet * 2)
             win = True
 
     #Results for win
     if win:
+        profit = (bet * bets.get(typeOfBet))
         balance += profit
-        print("You won " + str(profit))
+        slow_print("You won " + str(profit) + ", your balance is now " + str(balance) + "!")
     
     #Results for loss
     if win == False:
@@ -174,7 +189,7 @@ while game_over == False:
                 slow_print("Fine. Come back any time!")
                 break
     else:
-        slow_print("Great choice", 0.1)
+        slow_print("Great choice!")
         print()
 
 
