@@ -43,7 +43,6 @@ while balance > 0:
     dealerCard1Val = cards.get(dealerCard)
     dealerSum = dealerCard1Val
     print("Dealer Card: " + dealerCard)
-    print("Dealer total = " + str(dealerSum))
     
     turn = False
 
@@ -70,6 +69,7 @@ while balance > 0:
             balance += bet
         else:
             balance += 2.5 * bet
+            balance = int(balance)
     else:
         # if it is not a black jack give the options
         turn = True
@@ -101,4 +101,95 @@ while balance > 0:
             elif dealerSum > sum:
                 print("Dealer Wins")
             turn = False
-
+        
+        # case 2 - hit
+        elif decision == "hit":
+            extraCard = cardKeys[random.randint(0, 12)]
+            playerHand.append(extraCard)
+            print(extraCard)
+            extraCardVal = cards.get(extraCard)
+            sum += extraCardVal
+            if sum > 21:
+                if "A" in playerHand:
+                    sum -= 10
+                    playerHand.remove("A")
+                else:
+                    print("bust")
+                    turn = False
+            print("total = " + str(sum))
+            if sum == 21:
+                dealerCard = cardKeys[random.randint(0, 12)]
+                dealerHand.append(dealerCard)
+                dealerCardVal = cards.get(dealerCard)
+                print("dealer's card: " + str(dealerCard))
+                dealerSum += dealerCardVal
+                print("dealer total: " + str(dealerCard))
+                if dealerCard == 21:
+                    print("push")
+                    balance += bet
+                else:
+                    print("you win")
+                    balance += 2*bet
+                    balance = int(balance)
+                turn = False
+        
+        # case 3 - double (only if us have enough to double)
+        elif decision == "double":
+            balance -= bet
+            if balance < 0:
+                print("don't have the money to double")
+                balance += bet
+            else:
+                bet *= 2
+                extraCard = cardKeys[random.randint(0, 12)]
+                print(extraCard)
+                playerHand.append(extraCard)
+                extraCardVal = cards.get(extraCard)
+                sum += extraCardVal
+                print("total = " + str(sum))
+                time.sleep(0.25)
+                if sum > 21:
+                    if "A" in playerHand:
+                        sum -= 10
+                        playerHand.remove("A")
+                    else:
+                        print("bust")
+                        turn = False
+                elif sum == 21:
+                    dealerCard = cardKeys[random.randint(0, 12)]
+                    dealerHand.append(dealerCard)
+                    dealer_card_val = cards.get(dealerCard)
+                    print("dealer's card: " + str(dealerCard))
+                    dealerSum += dealer_card_val
+                    print("dealer total: " + str(dealerSum))
+                    if dealerSum == 21:
+                        print("push")
+                        balance += bet
+                        balance = int(balance)
+                    else:
+                        print("you win")
+                        balance += 2.5*bet
+                    turn = False
+                else:
+                    while dealerSum < 17:
+                        dealerExtraCard = cardKeys[random.randint(0, 12)]
+                        dealerHand.append(dealerExtraCard)
+                        dealerExtraCardVal = cards.get(dealerExtraCard)
+                        dealerSum += dealerExtraCardVal
+                        print("Dealer total = " + str(dealerSum))
+                        if "A" in dealerHand and dealerSum > 21:
+                            dealerSum -= 10
+                            dealerHand.remove("A")
+                        time.sleep(0.5)
+                    if dealerSum > 21:
+                        print("dealer bust")
+                        balance += 2*bet
+                    elif dealerSum > sum:
+                        print("dealer won")
+                    elif dealerSum < sum:
+                        print("you win")
+                        balance += 2*bet
+                    else:
+                        print("push")
+                        balance += bet
+                    turn = False        
