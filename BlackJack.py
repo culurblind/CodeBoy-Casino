@@ -198,7 +198,7 @@ while game_over == False:
                             turn = False
                         else:
                             print("you win")
-                            balance += 2.5*bet
+                            balance += 2*bet
                             turn = False
                     else:
                         while dealer_sum < 17:
