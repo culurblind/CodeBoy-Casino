@@ -35,5 +35,23 @@ index = 26
 playerDeck = deck[:26]
 computerDeck = deck[:26]
 
-while playerDeck >= 0 :
+while playerDeck >= 0 and computerDeck >= 0:
     slow_print("You have" + len(playerDeck) + "cards now and I" + len(computerDeck) + "cards") 
+
+def playGame() :
+    playerBet = playerDeck[0]
+    playerTie = 0
+    computerBet = computerDeck[0]
+    computerTie = 0
+    if computerDeck >= playerDeck :
+        computerDeck.remove[0]
+        playerDeck.remove[0]
+        computerDeck.add(playerBet)
+        computerDeck.add(computerBet)
+    elif playerDeck >= computerDeck :
+        computerDeck.remove[0]
+        playerDeck.remove[0]
+        playerDeck.add(playerBet)
+        playerDeck.add(computerBet)
+    elif playerBet == computerBet :
+    
