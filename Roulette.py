@@ -116,7 +116,7 @@ while game_over == False:
     slow_print("How would you like to bet: ")
     typeOfBet = input('''
     Straight Up, Split, Street, Corners, Six-Line Bet, 
-    Column,  Dozen, Odd, Even,  Red, Black, Low (1 -18), High (19-36)
+    Row,  Dozen, Odd, Even,  Red, Black, Low (1 -18), High (19-36)
 
     ''')
 
@@ -173,18 +173,18 @@ while game_over == False:
         isInt = False
         while isInt == False:
             slow_print("Which row would you like to bet on? (Top, Bottom, or Middle)")
-            row = input('''3   6   9   12  15  18  21  24  27  30  33  36
+            print('''3   6   9   12  15  18  21  24  27  30  33  36
 2   5   8   11  14  17  20  23  26  29  32  35
-1   4   7   10  13  16  19  22  25  28  31  34
-                  ''')
+1   4   7   10  13  16  19  22  25  28  31  34''')
+            row = input()
             
-        if row != "Top" and row != "Middle" and row != "Bottom":
-            clear_terminal()
-            print("That is not a valid Row bet.")
+            if row != "Top" and row != "Middle" and row != "Bottom":
+                clear_terminal()
+                print("That is not a valid Row bet.")
         
-        else:
-            isInt = True
-            clear_terminal()
+            else:
+                isInt = True
+                clear_terminal()
 
     #get number for Dozen bet
     if typeOfBet == "Dozen":
@@ -210,7 +210,7 @@ while game_over == False:
     slow_print("Rolling... Rolling... Rolling... ", 0.2)
     print()
     value = randint(0, 37)
-    slow_print(str(value) + " " + wheel[value])
+    slow_print(str(value) + " " + str(wheel[value]))
     print()
     
     #Results for Straight Up bet
@@ -221,6 +221,15 @@ while game_over == False:
     #Results for Split bet
     if typeOfBet == "Split":
         if value == int(split[0]) or value == int(split[1]):
+            win = True
+
+    #Results for Row bet
+    if typeOfBet == "Row":
+        if row == "Top" and value % 3 == 0:
+            win = True
+        elif row == "Middle" and (value + 1) % 3 == 0:
+            win = True
+        elif row == "Bottom" and (value + 2) % 3 == 0:
             win = True
 
     #Results for Dozen bet
