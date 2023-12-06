@@ -77,33 +77,39 @@ def slow_print(input_string, delay=None):
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def isnt_int(raw_inp):
+    if(not raw_inp.isdigit()):
+        return True
+
 balance = 1000
 
 #Welcome Statement
 clear_terminal()
 slow_print("Welcome to the Roulette table.")
-slow_print("You have a balance of: " + str(balance))
 
 #Main roulette game
 while game_over == False:
     
     win = False
 
-    #Betting
-    slow_print("How much do you want to bet? ")
-    bet = int(input())
-    print()
-    balance -= bet
-
-    #Loop if the bet exceeds balance
-    while (balance < 0):
-        clear_terminal()
-        slow_print("Slow your roll there pal, you don't have " + str(bet) + ".")
-        balance += bet
-        slow_print("Your balance is: " + str(balance))
+    #Setting bet
+    placeHolder = True
+    while (placeHolder):
+        slow_print("You have a balance of: " + str(balance))
         slow_print("How much do you want to bet? ")
-        bet = int(input())
-        balance -= bet
+        bet = input()
+        clear_terminal()
+
+        if isnt_int(bet):
+            slow_print("Please enter a valid integer to bet on.")
+
+        elif int(bet) > balance:
+            slow_print("Slow your roll there pal, you don't have " + str(bet) + ".")
+
+        else:
+            placeHolder = False
+            bet = int(bet)
+            balance -= bet
 
     clear_terminal()
 
@@ -160,8 +166,8 @@ while game_over == False:
                   ''')
             split = input().split(" ")
 
-            if len(split) > 2 or int(split[0]) > 36  or int(split[0]) < 1 or int(split[0]) > 36  or int(split[0]) < 1:
-                if abs(int(split[0]) - int(split[1])) != 3 or abs(int(split[0]) - int(split[1])) != 3:
+            if len(split) > 2 or int(split[0]) > 36  or int(split[0]) < 1 or int(split[1]) > 36  or int(split[1]) < 1:
+                if abs(int(split[0]) - int(split[1])) != 3:
                     clear_terminal()
                     print("Those are not valid roullete numbers.")
                     print() 
