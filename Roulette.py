@@ -166,7 +166,10 @@ while game_over == False:
                   ''')
             split = input().split(" ")
 
-            if len(split) > 2 or int(split[0]) > 36  or int(split[0]) < 1 or int(split[1]) > 36  or int(split[1]) < 1:
+            if isnt_int(split[0]) or isnt_int(split[1]):
+                print("Those are not valid roulette numbers.")
+
+            elif len(split) > 2 or int(split[0]) > 36  or int(split[0]) < 1 or int(split[1]) > 36  or int(split[1]) < 1:
                 if abs(int(split[0]) - int(split[1])) != 3:
                     clear_terminal()
                     print("Those are not valid roullete numbers.")
