@@ -77,33 +77,39 @@ def slow_print(input_string, delay=None):
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def isnt_int(raw_inp):
+    if(not raw_inp.isdigit()):
+        return True
+
 balance = 1000
 
 #Welcome Statement
 clear_terminal()
 slow_print("Welcome to the Roulette table.")
-slow_print("You have a balance of: " + str(balance))
 
 #Main roulette game
 while game_over == False:
     
     win = False
 
-    #Betting
-    slow_print("How much do you want to bet? ")
-    bet = int(input())
-    print()
-    balance -= bet
-
-    #Loop if the bet exceeds balance
-    while (balance < 0):
-        clear_terminal()
-        slow_print("Slow your roll there pal, you don't have " + str(bet) + ".")
-        balance += bet
-        slow_print("Your balance is: " + str(balance))
+    #Setting bet
+    placeHolder = True
+    while (placeHolder):
+        slow_print("You have a balance of: " + str(balance))
         slow_print("How much do you want to bet? ")
-        bet = int(input())
-        balance -= bet
+        bet = input()
+        clear_terminal()
+
+        if isnt_int(bet):
+            slow_print("Please enter a valid integer to bet on.")
+
+        elif int(bet) > balance:
+            slow_print("Slow your roll there pal, you don't have " + str(bet) + ".")
+
+        else:
+            placeHolder = False
+            bet = int(bet)
+            balance -= bet
 
     clear_terminal()
 
@@ -116,7 +122,7 @@ while game_over == False:
     slow_print("How would you like to bet: ")
     typeOfBet = input('''
     Straight Up, Split, Street, Corners, Six-Line Bet, 
-    Column,  Dozen, Odd, Even,  Red, Black, Low (1 -18), High (19-36)
+    Row,  Dozen, Odd, Even,  Red, Black, Low (1 -18), High (19-36)
 
     ''')
 
@@ -160,8 +166,11 @@ while game_over == False:
                   ''')
             split = input().split(" ")
 
-            if len(split) > 2 or int(split[0]) > 36  or int(split[0]) < 1 or int(split[0]) > 36  or int(split[0]) < 1:
-                if abs(int(split[0]) - int(split[1])) != 3 or abs(int(split[0]) - int(split[1])) != 3:
+            if isnt_int(split[0]) or isnt_int(split[1]):
+                print("Those are not valid roulette numbers.")
+
+            elif len(split) > 2 or int(split[0]) > 36  or int(split[0]) < 1 or int(split[1]) > 36  or int(split[1]) < 1:
+                if abs(int(split[0]) - int(split[1])) != 3:
                     clear_terminal()
                     print("Those are not valid roullete numbers.")
                     print() 
@@ -169,22 +178,33 @@ while game_over == False:
                 print()
                 isInt = True
 
+    if typeOfBet == "Six-Line Bet":
+        isInt = False
+        while isInt == False:
+            slow_print("Which two lines would you like to bet on?")
+            slow_print("Use the top numbers as the labels for each line and make sure they lines are next to eachother? (EX: '12 15')")
+            print(''''3'   '6'   '9'   '12'  '15'  '18'  '21'  '24'  '27'  '30'  '33'  '36'
+ 2     5     8     11    14    17    20    23    26    29    32    35
+ 1     4     7     10    13    16    19    22    25    28    31    34
+                  ''')
+            SLB = input().split()
+
     if typeOfBet == "Row":
         isInt = False
         while isInt == False:
             slow_print("Which row would you like to bet on? (Top, Bottom, or Middle)")
-            row = input('''3   6   9   12  15  18  21  24  27  30  33  36
+            print('''3   6   9   12  15  18  21  24  27  30  33  36
 2   5   8   11  14  17  20  23  26  29  32  35
-1   4   7   10  13  16  19  22  25  28  31  34
-                  ''')
+1   4   7   10  13  16  19  22  25  28  31  34''')
+            row = input()
             
-        if row != "Top" and row != "Middle" and row != "Bottom":
-            clear_terminal()
-            print("That is not a valid Row bet.")
+            if row != "Top" and row != "Middle" and row != "Bottom":
+                clear_terminal()
+                print("That is not a valid Row bet.")
         
-        else:
-            isInt = True
-            clear_terminal()
+            else:
+                isInt = True
+                clear_terminal()
 
     #get number for Dozen bet
     if typeOfBet == "Dozen":
@@ -210,7 +230,7 @@ while game_over == False:
     slow_print("Rolling... Rolling... Rolling... ", 0.2)
     print()
     value = randint(0, 37)
-    slow_print(str(value) + " " + wheel[value])
+    slow_print(str(value) + " " + str(wheel[value]))
     print()
     
     #Results for Straight Up bet
@@ -221,6 +241,15 @@ while game_over == False:
     #Results for Split bet
     if typeOfBet == "Split":
         if value == int(split[0]) or value == int(split[1]):
+            win = True
+
+    #Results for Row bet
+    if typeOfBet == "Row":
+        if row == "Top" and value % 3 == 0:
+            win = True
+        elif row == "Middle" and (value + 1) % 3 == 0:
+            win = True
+        elif row == "Bottom" and (value + 2) % 3 == 0:
             win = True
 
     #Results for Dozen bet
