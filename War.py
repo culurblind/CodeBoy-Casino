@@ -54,4 +54,10 @@ def playGame() :
         playerDeck.add(playerBet)
         playerDeck.add(computerBet)
     elif playerBet == computerBet :
+        while playerBet == computerBet :
+            playerTie += 1
+            computerTie += 1
+            playGame() 
+
+def tie() :
     
