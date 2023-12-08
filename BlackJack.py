@@ -1,3 +1,4 @@
+# import statements
 import random
 import time
 import os
@@ -13,11 +14,12 @@ def slow_print(input_string, delay=None):
         time.sleep(delay)
     print()
 
+# clear_terminal() func clears the terminal after every round
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-
+# All the cards
 cards = {
     "2" : 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8, "9" : 9, "10" : 10, "J" : 10, "Q" : 10, "K" : 10, "A" : 11
 }
@@ -25,6 +27,7 @@ cardKeys = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
 
 balance = 1000
 
+# game runs while balance is more than 0
 while balance > 0:
     time.sleep(2)
     clear_terminal()
@@ -72,7 +75,7 @@ while balance > 0:
     # case 1 - black jack
     if sum == 21:
         slow_print("Black Jack!")
-        # dealer chance
+        # dealer card reveal
         while dealerSum < 17:
             dealerExtraCard = cardKeys[random.randint(0, 12)]
             dealerHand.append(dealerExtraCard)
@@ -84,6 +87,7 @@ while balance > 0:
                 dealerSum -= 10
                 dealerHand.remove("A")
             time.sleep(0.5)
+        # conditionala to determine win, loss, or tie
         if dealerSum > 21:
             slow_print("Dealer Bust")
             balance += 2.5 * bet
@@ -104,6 +108,7 @@ while balance > 0:
 
         # case 2 - stand
         if decision == "stand":
+            # dealer card reveal
             while dealerSum < 17:
                 dealerExtraCard = cardKeys[random.randint(0, 12)]
                 dealerHand.append(dealerExtraCard)
@@ -115,6 +120,7 @@ while balance > 0:
                     dealerHand.remove("A")
                 slow_print("Dealer total = " + str(dealerSum))
                 time.sleep(0.5)
+            # conditionals to determine winner
             if dealerSum > 21:
                 slow_print("Dealer Bust")
                 balance += 2 * bet
@@ -130,11 +136,13 @@ while balance > 0:
         
         # case 2 - hit
         elif decision == "hit":
+            # creating an additional card and append it to the player's hand
             extraCard = cardKeys[random.randint(0, 12)]
             playerHand.append(extraCard)
             slow_print(extraCard)
             extraCardVal = cards.get(extraCard)
             sum += extraCardVal
+            # conditionals if the hit makes the total 21 or greater
             if sum > 21:
                 if "A" in playerHand:
                     sum -= 10
@@ -162,18 +170,20 @@ while balance > 0:
         # case 3 - double (only if us have enough to double)
         elif decision == "double":
             balance -= bet
+            # conditional to make sure player has enough money to double
             if balance < 0:
                 slow_print("don't have the money to double")
                 balance += bet
             else:
                 bet *= 2
+                # one extra card for the double
                 extraCard = cardKeys[random.randint(0, 12)]
                 slow_print(extraCard)
                 playerHand.append(extraCard)
                 extraCardVal = cards.get(extraCard)
                 sum += extraCardVal
-                slow_print("total = " + str(sum))
                 time.sleep(0.25)
+                switch = True
                 if sum > 21:
                     if "A" in playerHand:
                         sum -= 10
@@ -181,33 +191,23 @@ while balance > 0:
                     else:
                         slow_print("bust")
                         turn = False
-                elif sum == 21:
-                    dealerCard = cardKeys[random.randint(0, 12)]
-                    dealerHand.append(dealerCard)
-                    dealer_card_val = cards.get(dealerCard)
-                    slow_print("dealer's card: " + str(dealerCard))
-                    dealerSum += dealer_card_val
-                    slow_print("dealer total: " + str(dealerSum))
-                    if dealerSum == 21:
-                        slow_print("push")
-                        balance += bet
-                        balance = int(balance)
-                    else:
-                        slow_print("you win")
-                        balance += 2*bet
-                    turn = False
-                else:
+                        switch = False
+                slow_print("total = " + str(sum))
+                # if no bust then run this code
+                if switch:
+                    # dealer card reveal
                     while dealerSum < 17:
                         dealerExtraCard = cardKeys[random.randint(0, 12)]
                         dealerHand.append(dealerExtraCard)
                         dealerExtraCardVal = cards.get(dealerExtraCard)
                         dealerSum += dealerExtraCardVal
-                        slow_print("dealer's card: " + str(dealerCard))
+                        slow_print("dealer's card: " + str(dealerExtraCard))
                         if "A" in dealerHand and dealerSum > 21:
                             dealerSum -= 10
                             dealerHand.remove("A")
                         slow_print("Dealer total = " + str(dealerSum))
                         time.sleep(0.5)
+                    # conditionals to determine winner
                     if dealerSum > 21:
                         slow_print("dealer bust")
                         balance += 2*bet
@@ -223,12 +223,15 @@ while balance > 0:
         
         #case 4 - split
         elif decision == "split":
+            # runs code only if the 2 cards are the same value
             if card1Val == card2Val:
                 balance -= bet
+                # won't run split if the money is not enough
                 if balance < 0:
                     slow_print("don't have the money to split")
                     balance += bet
                 else:
+                    # getting the other cards for each split
                     slow_print("balance: " + str(balance))
                     print()
                     splitHand1 = []
@@ -257,6 +260,7 @@ while balance > 0:
                     splitTurn2 = False
                     dealerReveal = False
 
+                    # first split hit and stand
                     while (splitTurn1):
                         if sum1 == 21:
                             dealerReveal = True
@@ -295,6 +299,7 @@ while balance > 0:
                         
                         print()
 
+                        # second split hit or stand
                         while (splitTurn2):
                             if sum2 == 21:
                                 dealerReveal = True
@@ -310,7 +315,7 @@ while balance > 0:
                                     extraCard2Val = cards.get(extraCard2)
                                     sum2 += extraCard2Val
                                     slow_print("split 2 card: " + extraCard2)
-                                    if sum1 > 21:
+                                    if sum2 > 21:
                                         if "A" in splitHand2:
                                             sum -= 10
                                             playerHand.remove("A")
@@ -324,7 +329,8 @@ while balance > 0:
                                 elif splitDecision == "stand":
                                     dealerReveal = True
                                     splitTurn2 = False
-                            
+                        
+                        # dealer card reveal
                         if (dealerReveal):
                             while dealerSum < 17:
                                 dealerExtraCard = cardKeys[random.randint(0, 12)]
@@ -339,6 +345,7 @@ while balance > 0:
                                 slow_print("Dealer total = " + str(dealerSum))
                                 time.sleep(0.5)
 
+                            # determine winner
                             if dealerSum > 21:
                                 slow_print("Dealer Bust!")
                                 if sum1 <= 21:
@@ -365,10 +372,10 @@ while balance > 0:
                                     balance += bet
 
                         turn = False
-
             else:
                 slow_print("your cards are not the same, you can not split")
 
+# final statements to say ran out of money
 if balance <= 0:
     print()
     print()
