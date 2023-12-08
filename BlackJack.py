@@ -18,6 +18,10 @@ def slow_print(input_string, delay=None):
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+# isnt_int func makes sure an input is a int
+def isnt_int(raw_inp):
+    if(not raw_inp.isdigit()):
+        return True
 
 # All the cards
 cards = {
@@ -33,7 +37,14 @@ while balance > 0:
     clear_terminal()
     # initial bet
     slow_print("balance: " + str(balance))
-    bet = int(input("How much do you want to bet? "))
+    bet = input("How much do you want to bet? ")
+    # makes sure the bet is an int
+    while isnt_int(bet):
+        slow_print("You need to type a number as a valid bet")
+        time.sleep(1.5)
+        clear_terminal()
+        bet = input("How much do you want to bet? ")
+    bet = int(bet)
     balance -= bet
     # condition if person bets more money than they have
     while balance < 0:
@@ -101,6 +112,7 @@ while balance > 0:
     else:
         # if it is not a black jack give the options
         turn = True
+        hit = False
 
     while turn:
         print()
@@ -133,7 +145,7 @@ while balance > 0:
             elif dealerSum > sum:
                 slow_print("Dealer Wins")
             turn = False
-        
+
         # case 2 - hit
         elif decision == "hit":
             # creating an additional card and append it to the player's hand
@@ -166,6 +178,7 @@ while balance > 0:
                     balance += 2*bet
                     balance = int(balance)
                 turn = False
+            hit = True
         
         # case 3 - double (only if us have enough to double)
         elif decision == "double":
@@ -174,6 +187,8 @@ while balance > 0:
             if balance < 0:
                 slow_print("don't have the money to double")
                 balance += bet
+            elif hit:
+                slow_print("you already hit you cannot double now")
             else:
                 bet *= 2
                 # one extra card for the double
@@ -223,8 +238,10 @@ while balance > 0:
         
         #case 4 - split
         elif decision == "split":
+            if hit:
+                slow_print("you already hit you cannot double now")
             # runs code only if the 2 cards are the same value
-            if card1Val == card2Val:
+            elif card1Val == card2Val:
                 balance -= bet
                 # won't run split if the money is not enough
                 if balance < 0:
