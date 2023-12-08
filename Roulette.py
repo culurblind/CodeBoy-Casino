@@ -261,7 +261,7 @@ while game_over == False:
             
             if row != "Top" and row != "Middle" and row != "Bottom":
                 clear_terminal()
-                print("That is not a valid Row bet.")
+                slow_print("That is not a valid Row bet.")
         
             else:
                 isInt = True
@@ -288,7 +288,7 @@ while game_over == False:
     slow_print( "Time to Roll")
     print()
     slow_print("Rolling... Rolling... Rolling... ", 0.2)
-    print()
+    clear_terminal()
     value = randint(0, 37)
     slow_print(str(value) + " " + str(wheel[value]))
     print()
