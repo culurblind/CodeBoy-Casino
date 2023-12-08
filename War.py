@@ -13,7 +13,11 @@ def slow_print(input_string, delay=None):
         print(char, end='', flush=True)
         time.sleep(delay)
     print()
-
+def get_element_count(int_list):
+  if isinstance(int_list, int):
+    return 1
+  else:
+    return len(int_list)
 
 # game over variable
 gameStatus = False
@@ -35,8 +39,8 @@ index = 26
 playerDeck = deck[:26]
 computerDeck = deck[:26]
 
-while playerDeck >= 0 and computerDeck >= 0:
-    slow_print("You have" + len(playerDeck) + "cards now and I" + len(computerDeck) + "cards") 
+while get_element_count(playerDeck) >= 0 and get_element_count(computerDeck) >= 0:
+    slow_print("You have" + get_element_count(playerDeck) + "cards now and I" + get_element_count(computerDeck) + "cards") 
 
 def playGame() :
     playerBet = playerDeck[0]
@@ -44,20 +48,18 @@ def playGame() :
     computerBet = computerDeck[0]
     computerTie = 0
     if computerDeck >= playerDeck :
-        computerDeck.remove[0]
-        playerDeck.remove[0]
-        computerDeck.add(playerBet)
-        computerDeck.add(computerBet)
+        del computerDeck[0, computerTie]
+        del playerDeck[0, computerTie]
+        computerDeck.extend(playerBet)
+        computerDeck.extend(computerBet)
     elif playerDeck >= computerDeck :
-        computerDeck.remove[0]
-        playerDeck.remove[0]
-        playerDeck.add(playerBet)
-        playerDeck.add(computerBet)
+        del computerDeck.remove[0, computerTie]
+        playerDeck.remove[0, playerTie]
+        playerDeck.extend(playerBet)
+        playerDeck.extend(computerBet)
     elif playerBet == computerBet :
         while playerBet == computerBet :
             playerTie += 1
             computerTie += 1
             playGame() 
 
-def tie() :
-    
