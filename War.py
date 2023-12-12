@@ -40,9 +40,10 @@ playerDeck = deck[:26]
 computerDeck = deck[:26]
 
 while get_element_count(playerDeck) >= 0 and get_element_count(computerDeck) >= 0:
-    slow_print("You have" + get_element_count(playerDeck) + "cards now and I" + get_element_count(computerDeck) + "cards") 
+    slow_print("You have " + str(get_element_count(playerDeck)) + "cards now and I " + str(get_element_count(computerDeck)) + "cards") 
+    play_Game()
 
-def playGame() :
+def play_Game() :
     playerBet = playerDeck[0]
     playerTie = 0
     computerBet = computerDeck[0]
