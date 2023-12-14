@@ -13,11 +13,69 @@ def slow_print(input_string, delay=None):
         print(char, end='', flush=True)
         time.sleep(delay)
     print()
+
 def get_element_count(int_list):
   if isinstance(int_list, int):
     return 1
   else:
     return len(int_list)
+def playWar(playerCards, computerCards):
+  warTie = 0
+  while playerCards and computerCards:
+    playerCard = playerCards.pop(0)
+    computerCard = computerCards.pop(0)
+    if playerCard > computerCard:
+      return playerCard, warTie
+    elif computerCard > playerCard:
+      return None, warTie
+    else:
+      warTie += 2
+
+  if playerCards:  # Player wins with remaining cards
+    return playerCards[0], warTie
+  else:  # Computer wins with remaining cards
+    return None, warTie
+  
+def playGame():
+    # Get initial bets and ties
+    playerBet = playerDeck[0]
+    playerTie = 0
+    computerBet = computerDeck[0]
+    computerTie = 0
+
+  # Play the round
+    while playerBet is not None and computerBet is not None:
+        # Compare cards
+        if playerBet > computerBet:
+            winner = "player"
+            computerTie += 1  # Computer loses tie cards
+        elif computerBet > playerBet:
+            winner = "computer"
+            playerTie += 1  # Player loses tie cards
+        else:  # Tie
+            playerTie += 1
+            computerTie += 1
+        # Handle war if both decks have enough cards
+        if len(playerDeck) >= 3 and len(computerDeck) >= 3:
+            # Play a mini-war with the next 3 cards
+            playerWarBet, playerWarTie = playWar(playerDeck[1:4], computerDeck[1:4])
+            playerTie += playerWarTie
+            computerTie += computerWarTie
+            playerBet = playerWarBet if playerWarBet else None
+            computerBet = None if not computerDeck else computerDeck[0]
+        else:  # Not enough cards for war, tie the round
+            winner = None
+
+        # Update decks based on result
+        del playerDeck[0]
+        if winner == "player":
+                    playerDeck.extend(computerDeck[:computerTie])
+                    del computerDeck[:computerTie]
+        elif winner == "computer":
+                    computerDeck.extend(playerDeck[:playerTie])
+    del playerDeck[:playerTie]
+        # Return remaining bets and accumulated tie cards
+    return playerBet, playerTie, computerBet, computerTie, winner
 
 # game over variable
 gameStatus = False
@@ -40,27 +98,9 @@ playerDeck = deck[:26]
 computerDeck = deck[:26]
 
 while get_element_count(playerDeck) >= 0 and get_element_count(computerDeck) >= 0:
-    slow_print("You have " + str(get_element_count(playerDeck)) + "cards now and I " + str(get_element_count(computerDeck)) + "cards") 
-    play_Game()
+    slow_print("You have " + str(get_element_count(playerDeck)) + " cards, and I have " + str(get_element_count(computerDeck)) + " cards") 
+    playGame()
 
-def play_Game() :
-    playerBet = playerDeck[0]
-    playerTie = 0
-    computerBet = computerDeck[0]
-    computerTie = 0
-    if computerDeck >= playerDeck :
-        del computerDeck[0, computerTie]
-        del playerDeck[0, computerTie]
-        computerDeck.extend(playerBet)
-        computerDeck.extend(computerBet)
-    elif playerDeck >= computerDeck :
-        del computerDeck.remove[0, computerTie]
-        playerDeck.remove[0, playerTie]
-        playerDeck.extend(playerBet)
-        playerDeck.extend(computerBet)
-    elif playerBet == computerBet :
-        while playerBet == computerBet :
-            playerTie += 1
-            computerTie += 1
-            playGame() 
+
+  
 
