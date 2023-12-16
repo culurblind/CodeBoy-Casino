@@ -42,6 +42,7 @@ def playGame():
     playerTie = 0
     computerBet = computerDeck[0]
     computerTie = 0
+    winner = ""
 
   # Play the round
     while playerBet is not None and computerBet is not None:
@@ -60,7 +61,7 @@ def playGame():
             # Play a mini-war with the next 3 cards
             playerWarBet, playerWarTie = playWar(playerDeck[1:4], computerDeck[1:4])
             playerTie += playerWarTie
-            computerTie += computerWarTie
+            computerTie += playerWarTie
             playerBet = playerWarBet if playerWarBet else None
             computerBet = None if not computerDeck else computerDeck[0]
         else:  # Not enough cards for war, tie the round
