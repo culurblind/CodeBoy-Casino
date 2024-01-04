@@ -288,7 +288,7 @@ while game_over == False:
     slow_print( "Time to Roll")
     print()
     slow_print("Rolling... Rolling... Rolling... ", 0.2)
-    clear_terminal()
+    print()
     value = randint(0, 37)
     slow_print(str(value) + " " + str(wheel[value]))
     print()
