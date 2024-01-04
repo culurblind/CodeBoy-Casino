@@ -396,4 +396,4 @@ while balance > 0:
 if balance <= 0:
     print()
     print()
-    slow_print("don't have that much money game over")
+    slow_print("You Are Broke")
