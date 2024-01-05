@@ -80,20 +80,21 @@ def playGame():
 
 # game over variable
 gameStatus = False
-slow_print("Welcome to War! The goal of this game is to win all the cards in a deck. Each player starts out with exactly half the deck facedown.")
-slow_print("At the same time, both players draw a singular card. The player with the highest value card wins, and takes all the cards drawn.")
-slow_print("If the cards drawn hold the same value and the players tie, each player continues drawing cards until one person wins")
-# mapping cards to numerical values
+#instructions for game
+slow_print("Welcome to War! Your goal is to hold all the cards in the deck. Each player starts out with half the deck facedown.")
+slow_print("At the same time, both players draw a singular card, the player with the hightest values taking all the cards drawn.")
+slow_print("If the cards drawn hold the same value and the players tie, each player continues drawing cards until one person wins. This is called a War")
+
 
 #card combinations
 suits = ["Spades", "Hearts", "Diamonds", "Clubs"]
 ranks = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
 
-#shuffles deck
+#deck is shuffled
 deck = list(product(ranks, suits))
 random.shuffle(deck)
 
-#sets half the deck to player and computer
+#gives half of cards to player/computer
 index = 26
 playerDeck = deck[:26]
 computerDeck = deck[:26]
