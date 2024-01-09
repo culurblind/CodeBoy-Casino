@@ -1,11 +1,12 @@
 #War
 import random
+import time
 ranks=[2,3,4,5,6,7,8,9,10,'J','K','A','Q']
 design =['H','D','S','C']
 
 def slow_print(input_string, delay=None):
     if delay is None:
-        delay = 0.05
+        delay = 0.5 
 
 class Deck:
     def __init__(self):
@@ -48,11 +49,15 @@ class Player:
         Return true if player has cards left
         """
         return len(self.hand.cards_count) != 0
-print("Welcome to War, Let's run into our game...")
+    
+slow_print("Welcome to War! Your goal is to hold all the cards in the deck. Each player starts out with half the deck facedown.")
+slow_print("At the same time, both players draw a singular card, the player with the hightest values taking all the cards drawn.")
+slow_print("If the cards drawn hold the same value and the players tie, each player continues drawing cards until one person wins. This is called a War")
+
 # Create new deck and split it into half
-d= Deck()
-d.shuffle()
-half1,half2=d.split_half()
+shuffledeck= Deck()
+shuffledeck.shuffle()
+half1,half2=shuffledeck.split_half()
 
 #Create both players !
 comp = Player("Computer",Hand(half1))
@@ -64,12 +69,12 @@ war_count = 0
 
 while human.still_has_cards() and comp.still_has_cards():
     total_rounds += 1
-    print("Time for a new round")
-    print("Here are the current standings")
-    print(human.name + "has the count:"+str(len(human.hand.cards_count)))
-    print(comp.name + "has the count:"+str(len(comp.hand.cards_count)))
-    print("Play a card!")
-    print("\n")
+    slow_print("Time for a new round")
+    slow_print("Here are the current standings")
+    slow_print(human.name + "has the count:"+str(len(human.hand.cards_count)))
+    slow_print(comp.name + "has the count:"+str(len(comp.hand.cards_count)))
+    slow_print("Play a card!")
+    slow_print("\n")
 
     table_cards = []
 
@@ -93,7 +98,7 @@ while human.still_has_cards() and comp.still_has_cards():
             human.hand.add(table_cards)
         else:
             comp.hand.add(table_cards)
-print("Game over,number of rounds:"+str(total_rounds))
-print("A war happened " + str(war_count) +" times")
-print("Does the computer still have cards?\t",str(comp.still_has_cards()))
-print("Does the Human player still have cards?\t:",str(human.still_has_cards()))
+slow_print("Game over,number of rounds:"+str(total_rounds))
+slow_print("A war happened " + str(war_count) +" times")
+slow_print("Does the computer still have cards?\t",str(comp.still_has_cards()))
+slow_print("Does the Human player still have cards?\t:",str(human.still_has_cards()))
