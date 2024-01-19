@@ -51,7 +51,7 @@ while gameplay == True:
             slow_print("You lost the bet, the dice rolled " + str(diceNum))
             gameplay = False
         else:
-            list = input(diceNum)
+            list.append(diceNum)
             #true/flase for if a number is rerolled
             pastNumber = False
             reRoll()
