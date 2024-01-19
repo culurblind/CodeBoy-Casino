@@ -29,7 +29,7 @@ def dicetotal():
 def reRoll():
     diceNum
     while pastNumber == False:
-        print("you rolled " + dicetotal + " the die will reroll")
+        print("you rolled " + str(diceNum) + " the die will reroll")
         if diceNum == list:
             slow_print("You rerolled " + str(list) + " again! You win!")
             pastNumber == True
