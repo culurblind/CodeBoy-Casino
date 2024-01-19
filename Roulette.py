@@ -166,18 +166,21 @@ def roulette(balance):
             while(isInt == False):
                 slow_print("Which two numbers would you like to bet on that are")
                 slow_print("directly next to eachother vertically or horizontally? (EX: '8 11')")
-                print('''3   6   9   12  15  18  21  24  27  30  33  36
+                print('''    3   6   9   12  15  18  21  24  27  30  33  36
     2   5   8   11  14  17  20  23  26  29  32  35
     1   4   7   10  13  16  19  22  25  28  31  34
                     ''')
                 split = input().split(" ")
 
-                if isnt_int(split[0]) or isnt_int(split[1]):
+                if len(split) != 2:
+                    clear_terminal()
+                    print("That is not valid. Please enter TWO valid roulette numbers.")
+
+                elif isnt_int(split[0]) or isnt_int(split[1]):
                     clear_terminal()
                     print("Those are not valid roulette numbers.")
 
-                elif len(split) > 2 or int(split[0]) > 36  or int(split[0]) < 1 or int(split[1]) > 36  or int(split[1]) < 1:
-                    if abs(int(split[0]) - int(split[1])) != 3:
+                elif int(split[0]) > 36  or int(split[0]) < 1 or int(split[1]) > 36  or int(split[1]) < 1 or (abs(int(split[0]) - int(split[1])) != 3) or (abs(int(split[0]) - int(split[1])) != 1):
                         clear_terminal()
                         print("Those are not valid roulette numbers.")
                         print() 
