@@ -147,9 +147,11 @@ def roulette(balance):
         if (typeOfBet == "Straight Up"):
             isInt = False
             while(isInt == False):
-                Straight_Up = int(input("Which number between 0 and 36 would you like to bet on? "))
+                slow_print("Which number between 0 and 36 would you like to bet on? ")
+                Straight_Up = input()
                 if Straight_Up >= 0 and Straight_Up <= 36 and not isnt_int(Straight_Up):
                     isInt = True
+                    Straight_Up = int(Straight_Up)
                 else:
                     print("That is not a valid roullete number.")
                     print()
