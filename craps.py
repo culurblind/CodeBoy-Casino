@@ -41,7 +41,7 @@ def reRoll():
 
 #runs game
 while gameplay == True:
-    dicetotal
+    dicetotal()
     if dicetotal == 7 or 11:
         print("The dice rolled" + dicetotal + ", You won!")
         gameplay = False
