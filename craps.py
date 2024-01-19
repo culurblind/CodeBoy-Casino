@@ -31,24 +31,30 @@ def dicetotal():
 def reRoll():
     dicetotal
     while pastNumber == False:
-        print("you rolled" + dicetotal + "the die will reroll")
+        print("you rolled " + dicetotal + " the die will reroll")
         if dicetotal == list:
-            print("You rerolled" + list +"again! You win!")
+            slow_print("You rerolled " + list + " again! You win!")
             pastNumber == True
         if dicetotal == 7:
-            print("You rolled a 7! You have lost the game")
+            slow_print("You rolled a 7! You have lost the game")
             pastNumber == True
 
 #runs game
 while gameplay == True:
-    dicetotal()
-    if dicetotal == 7 or 11:
-        print("The dice rolled" + dicetotal + ", You won!")
-        gameplay = False
-    if dicetotal == 2 or 3 or 12:
-        print("You lost the bet, the dice rolled" + dicetotal)
-        gameplay = False
+    diceNum = dicetotal()
+
+    nextStep = input("Type roll! ")
+    if nextStep == "roll":
+        slow_print("Rolling... Rolling... Rolling... ", 0.2)
+        if diceNum == 7 or diceNum == 11:
+            slow_print("The dice rolled " + str(diceNum) + ", You won!")
+            gameplay = False
+        elif diceNum == 2 or diceNum == 3 or diceNum == 12:
+            slow_print("You lost the bet, the dice rolled " + str(diceNum))
+            gameplay = False
+        else:
+            list = input(diceNum)
+            reRoll()
+            gameplay == False
     else:
-        list = input(dicetotal)
-        reRoll()
-        gameplay == False
+        print("You did not type roll")
