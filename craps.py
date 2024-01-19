@@ -17,8 +17,6 @@ slow_print("welcome to Craps! Your goal is to see whether the dice will roll a w
 slow_print("if you roll a 7 or 11, you win. If you roll a 2, 3, or 12, you automatically lose")
 slow_print("any other combination of values will be added to the point, and you will continue rerolling until you get that number again or roll a 7, in which you lose")
 gameplay = True
-#true/flase for if a number is rerolled
-pastNumber = False
 list = []
 
 #rolls dice and adds them up
@@ -29,13 +27,13 @@ def dicetotal():
 
 #instance when first roll doesn't end game
 def reRoll():
-    dicetotal
+    diceNum
     while pastNumber == False:
         print("you rolled " + dicetotal + " the die will reroll")
-        if dicetotal == list:
-            slow_print("You rerolled " + list + " again! You win!")
+        if diceNum == list:
+            slow_print("You rerolled " + str(list) + " again! You win!")
             pastNumber == True
-        if dicetotal == 7:
+        if diceNum == 7:
             slow_print("You rolled a 7! You have lost the game")
             pastNumber == True
 
@@ -54,6 +52,8 @@ while gameplay == True:
             gameplay = False
         else:
             list = input(diceNum)
+            #true/flase for if a number is rerolled
+            pastNumber = False
             reRoll()
             gameplay == False
     else:
