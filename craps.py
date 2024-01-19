@@ -40,10 +40,9 @@ def reRoll():
 #runs game
 while gameplay == True:
     diceNum = dicetotal()
-
     nextStep = input("Type roll! ")
     if nextStep == "roll":
-        slow_print("Rolling... Rolling... Rolling... ", 0.2)
+        slow_print("Rolling... Rolling... Rolling... ", 0.1)
         if diceNum == 7 or diceNum == 11:
             slow_print("The dice rolled " + str(diceNum) + ", You won!")
             gameplay = False

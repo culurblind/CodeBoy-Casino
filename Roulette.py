@@ -71,9 +71,11 @@ def slow_print(input_string, delay=None):
         time.sleep(delay)
     print()
 
+#clear screen method
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+#returns true if input would not be a digit
 def isnt_int(raw_inp):
     if(not raw_inp.isdigit()):
         return True
@@ -149,9 +151,11 @@ def roulette(balance):
             while(isInt == False):
                 slow_print("Which number between 0 and 36 would you like to bet on? ")
                 Straight_Up = input()
-                if Straight_Up >= 0 and Straight_Up <= 36 and not isnt_int(Straight_Up):
-                    isInt = True
+                clear_terminal()
+                if not isnt_int(Straight_Up):
                     Straight_Up = int(Straight_Up)
+                    if Straight_Up >= 0 and Straight_Up <= 36:
+                        isInt = True
                 else:
                     print("That is not a valid roullete number.")
                     print()
@@ -290,7 +294,7 @@ def roulette(balance):
         slow_print( "Time to Roll")
         print()
         slow_print("Rolling... Rolling... Rolling... ", 0.2)
-        print()
+        clear_terminal()
         value = randint(0, 37)
         slow_print(str(value) + " " + str(wheel[value]))
         print()
