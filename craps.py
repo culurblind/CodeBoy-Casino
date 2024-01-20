@@ -8,7 +8,7 @@ import os
 #default delay of 0.1s if no delay peramter is given
 def slow_print(input_string, delay=None):
     if delay is None:
-        delay = 0.001
+        delay = 0.05
 
     for char in input_string:
         print(char, end='', flush=True)
@@ -57,21 +57,21 @@ def dicetotal():
 #instance when first roll doesn't end game
 def reRoll(diceNum):
     while pastNumber == False:
-        print("you rolled " + str(diceNum) + " the die will reroll")
-        if diceNum == list:
+        newNum = dicetotal()
+        if newNum == list:
             slow_print("You rerolled " + str(list) + " again! You win!")
             pastNumber == True
             balance += 2 * bet
-        if diceNum == 7:
+        if newNum== 7:
             slow_print("You rolled a 7! You have lost the game")
+            balance - 2 * bet
             pastNumber == True
         else:
-            diceNum= dicetotal()
+            slow_print("You rolled ," + str(newNum) + "the dice will roll again")
 
 #runs game
 while gameplay == True:
     diceNum = dicetotal()
-
     nextStep = input("Type roll! ")
     if nextStep == "roll":
         slow_print("Rolling... Rolling... Rolling... ", 0.1)
@@ -84,6 +84,7 @@ while gameplay == True:
             gameplay = False
         else:
             list.append(diceNum)
+            print("you rolled " + str(diceNum) + " the die will reroll")
             #true/flase for if a number is rerolled
             pastNumber = False
             reRoll(diceNum)
