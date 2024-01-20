@@ -68,26 +68,44 @@ def reRoll(diceNum):
             pastNumber == True
         else:
             slow_print("You rolled ," + str(newNum) + "the dice will roll again")
-
-#runs game
-while gameplay == True:
-    diceNum = dicetotal()
-    nextStep = input("Type roll! ")
-    if nextStep == "roll":
-        slow_print("Rolling... Rolling... Rolling... ", 0.1)
-        if diceNum == 7 or diceNum == 11:
-            slow_print("The dice rolled " + str(diceNum) + ", You won!")
-            balance += 2 * bet
-            gameplay = False
-        elif diceNum == 2 or diceNum == 3 or diceNum == 12:
-            slow_print("You lost the bet, the dice rolled " + str(diceNum))
-            gameplay = False
+def playgame():
+    #runs game
+    while gameplay == True:
+        diceNum = dicetotal()
+        nextStep = input("Type roll! ")
+        if nextStep == "roll":
+            slow_print("Rolling... Rolling... Rolling... ", 0.1)
+            if diceNum == 7 or diceNum == 11:
+                slow_print("The dice rolled " + str(diceNum) + ", You won!")
+                balance += 2 * bet
+                gameplay = False
+            elif diceNum == 2 or diceNum == 3 or diceNum == 12:
+                slow_print("You lost the bet, the dice rolled " + str(diceNum))
+                gameplay = False
+            else:
+                list.append(diceNum)
+                print("you rolled " + str(diceNum) + " the die will reroll")
+                #true/flase for if a number is rerolled
+                pastNumber = False
+                reRoll(diceNum)
+                gameplay == False
         else:
-            list.append(diceNum)
-            print("you rolled " + str(diceNum) + " the die will reroll")
-            #true/flase for if a number is rerolled
-            pastNumber = False
-            reRoll(diceNum)
-            gameplay == False
-    else:
-        print("You did not type roll")
+            print("You did not type roll")
+playTrue = True
+numGames = 1
+#asks the user if they want to keep playing
+while playTrue == True:
+    if numGames == 1:
+        status = input("Do you want to play the game?")
+        if status == "Yes" or "yes":
+            playgame(gameplay)
+            numGames += 1
+        else:
+            playTrue = False
+    if numGames > 1:
+        status = input("Do you want to play again?")
+        if status == "Yes" or "yes":
+            playgame()
+            numGames += 1
+        else:
+            playTrue = False
