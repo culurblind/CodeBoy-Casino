@@ -40,9 +40,12 @@ clear_terminal()
 
 balance = 1000
 gameplay = True
-list = []
+
 
 while gameplay == True:
+    time.sleep(1)
+    clear_terminal()
+
     # Balance/ Betting set up
     slow_print("Balance: " + str(balance))
     bet = input("How much do you want to bet? ")
@@ -72,27 +75,34 @@ while gameplay == True:
         elif diceNum == 2 or diceNum == 3 or diceNum == 12:
             slow_print("You lost the bet, the dice rolled " + str(diceNum))
         else:
-            list.append(diceNum)
+
             print("you rolled " + str(diceNum) + " the die will reroll")
             #true/flase for if a number is rerolled
             pastNumber = False
 
+            print()
             while pastNumber == False:
+                time.sleep(0.55)
                 newNum = dicetotal()
-                if newNum == list:
-                    slow_print("You rerolled " + str(list) + " again! You win!")
+                if newNum == diceNum:
+                    slow_print("You rerolled " + str(diceNum) + " again! You win!")
                     pastNumber == True
                     balance += 2 * bet
-                if newNum== 7:
+                    break
+                elif newNum == 7:
                     slow_print("You rolled a 7! You have lost the game")
                     balance - 2 * bet
                     pastNumber = True
+                    break
                 else:
-                    slow_print("You rolled, " + str(newNum) + "the dice will roll again")
+                    slow_print("You rolled, " + str(newNum) + " the dice will roll again")
+            
+            slow_print("balance: " + str(balance))
 
     else:
         print("You did not type roll")
 
+    print()
     status = input("Do you want to play again? (y/n) ")
     statusLoop = True
 
