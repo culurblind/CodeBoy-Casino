@@ -405,4 +405,4 @@ def roulette(balance):
             slow_print("Great choice!")
             slow_print("Your balance is " + str(balance) + ".")
 
-roulette(1000)
+    return balance

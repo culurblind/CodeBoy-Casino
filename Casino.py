@@ -1,6 +1,6 @@
-import BlackJack as bj
 import Roulette as rl
-import craps as cr
+#import BlackJack as bj
+#import craps as cr
 import time
 import os
 
@@ -22,19 +22,27 @@ def isnt_int(raw_inp):
     if(not raw_inp.isdigit()):
         return True
 
+#if the person is coming back to the casino floor 
+retuner = " "
+
 balance = 1000
 play = True
 while play == True:
-    slow_print("Welcome to CodeBoy Casino! You have a balance of " + str(balance) + ".")
-    slow_print("Which game would you like to play? BlackJack, Roulette, or Craps?")
-    print() 
-    game = str(input())
-    if game == "BlackJack":
-        bj.blackJack(balance)
-    if game == "Roulette":
-        rl.roulette(balance)
-    if game == "Craps":
-        cr.craps(balance)
+    slow_print("Welcome" + retuner + "to the |CodeBoy Casino| floor! You have a balance of " + str(balance) + ".")
+    slow_print("Which game room would you like to enter? BlackJack, Roulette, or Craps?")
+    print()
+
+    game = (str(input())).lower()
+    clear_terminal()
+
+    if game == "blackJack":
+        balance = bj.blackJack(balance)
+    if game == "roulette":
+        balance = rl.roulette(balance)
+    if game == "craps":
+        balance = cr.craps(balance)
     else:
-        print()
+        slow_print("Please enter a valid game room you would like to enter.")
+
+print(balance)
         
