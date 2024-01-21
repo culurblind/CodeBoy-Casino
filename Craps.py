@@ -34,16 +34,13 @@ def craps(balance):
     slow_print("welcome to Craps! Your goal is to see whether the dice will roll a winning number. In the first round,")
     slow_print("if you roll a 7 or 11, you win. If you roll a 2, 3, or 12, you automatically lose")
     slow_print("any other combination of values will be added to the point, and you will continue rerolling until you get that number again or roll a 7, in which you lose")
-    time.sleep(1)
-    clear_terminal()
+    time.sleep(10)
 
     gameplay = True
     while gameplay == True:
-        time.sleep(1)
-        clear_terminal()
 
         # Balance/ Betting set up
-        slow_print("Balance: " + str(balance))
+        slow_print("You have a balance of: " + str(balance))
         bet = input("How much do you want to bet? ")
         # makes sure the bet is an int
         while isnt_int(bet):
@@ -52,7 +49,7 @@ def craps(balance):
             clear_terminal()
             bet = input("How much do you want to bet? ")
         bet = int(bet)
-        balance -= bet
+            balance -= bet
         # condition if person bets more money than they have
         while balance < 0:
             slow_print("You do not have that much money")
