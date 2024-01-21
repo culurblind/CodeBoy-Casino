@@ -69,10 +69,8 @@ while gameplay == True:
         if diceNum == 7 or diceNum == 11:
             slow_print("The dice rolled " + str(diceNum) + ", You won!")
             balance += 2 * bet
-            gameplay = False
         elif diceNum == 2 or diceNum == 3 or diceNum == 12:
             slow_print("You lost the bet, the dice rolled " + str(diceNum))
-            gameplay = False
         else:
             list.append(diceNum)
             print("you rolled " + str(diceNum) + " the die will reroll")
@@ -92,6 +90,20 @@ while gameplay == True:
                 else:
                     slow_print("You rolled, " + str(newNum) + "the dice will roll again")
 
-            gameplay == False
     else:
         print("You did not type roll")
+
+    status = input("Do you want to play again? (y/n) ")
+    statusLoop = True
+
+    while statusLoop:
+        if status == "y":
+            statusLoop = False
+        elif status == "n":
+            gameplay = False
+            statusLoop = False
+            slow_print("Thanks for playing craps!")
+        else:
+            slow_print("Type y or n")
+        
+
