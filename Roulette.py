@@ -401,8 +401,10 @@ def roulette(balance):
                 slow_print("Tough luck, house wins. You still have " + str(balance) + " left in your balance.", 0.05)
 
         #Play again? prompt
-        slow_print("Would you like to play again? Y or N ")
+        slow_print("Would you like to play again? Y or N ")\
+        
         if input().lower() == "n":
+            clear_terminal()
             slow_print("Okay, hope to see you soon!")
             break
         else:
@@ -410,5 +412,3 @@ def roulette(balance):
             slow_print("Great choice!")
 
     return balance
-
-roulette(1000)

@@ -36,23 +36,23 @@ while play == True:
 
     while (play_game):
 
+        play_game = False
+
         game = (str(input())).lower()
         clear_terminal()
 
-        if game == "blackJack":
-            play_game = False
+        if game == "blackjack":
             balance = bj.blackJack(balance)
 
-        if game == "roulette":
-            play_game = False
+        elif game == "roulette":
             balance = rl.roulette(balance)
 
-        if game == "craps":
-            play_game = False
+        elif game == "craps":
             balance = cr.craps(balance)
-            
+
         else:
-            slow_print("Please enter a valid game room you would like to enter: BlackJack, Roulette, or Craps")
+            slow_print("Please enter a valid game room you would like to enter: BlackJack, Roulette, or Craps.")
+            play_game = True
 
     retuner = " back "
 
