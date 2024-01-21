@@ -405,5 +405,3 @@ def blackJack(balance):
         slow_print("You Are Broke")
     
     return balance
-
-blackJack(1000)
