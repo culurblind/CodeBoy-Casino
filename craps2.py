@@ -98,7 +98,7 @@ while playTrue == True:
     if numGames == 1:
         status = input("Do you want to play the game?")
         if status == "Yes" or "yes":
-            playgame(gameplay)
+            playgame()
             numGames += 1
         else:
             playTrue = False
