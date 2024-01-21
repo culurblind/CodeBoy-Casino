@@ -45,19 +45,19 @@ wheel = {
 }
 
 bets = {
-    "Straight Up" : 36,
-    "Split" : 18,
-    "Column" : 12,
-    "Corners" : 9,
-    "Six Line Bet" : 6,
-    "Row" : 3,
-    "Dozen" : 3,
-    "Odd" : 2,
-    "Even" : 2,
-    "Red" : 2,
-    "Black" : 2,
-    "Low" : 2,
-    "High" : 2
+    "straight up" : 36,
+    "split" : 18,
+    "column" : 12,
+    "corners" : 9,
+    "six Line Bet" : 6,
+    "row" : 3,
+    "dozen" : 3,
+    "odd" : 2,
+    "even" : 2,
+    "red" : 2,
+    "black" : 2,
+    "low" : 2,
+    "high" : 2
 }
 
 #prints given string slowly
@@ -126,7 +126,7 @@ def roulette(balance):
         Straight Up, Split, Column, Corners, Six Line Bet, 
         Row,  Dozen, Odd, Even,  Red, Black, Low (1 -18), High (19-36)
 
-        ''')
+        ''').lower()
 
         placeHolder = True
         while (placeHolder):
@@ -146,22 +146,27 @@ def roulette(balance):
         clear_terminal()
 
         #get number for Straight Up bet
-        if (typeOfBet == "Straight Up"):
+        if (typeOfBet == "straight up"):
             isInt = False
             while(isInt == False):
                 slow_print("Which number between 0 and 36 would you like to bet on? ")
                 Straight_Up = input()
                 clear_terminal()
-                if not isnt_int(Straight_Up):
-                    Straight_Up = int(Straight_Up)
-                    if Straight_Up >= 0 and Straight_Up <= 36:
-                        isInt = True
-                else:
+                if isnt_int(Straight_Up):
                     print("That is not a valid roullete number.")
                     print()
 
+                else:
+                    Straight_Up = int(Straight_Up)
+                    if Straight_Up >= 0 and Straight_Up <= 36:
+                        isInt = True
+
+                    else:
+                        slow_print("That is not a valid roullete number.")
+                        print()
+
         #get number for Split bet
-        if typeOfBet == "Split":
+        if typeOfBet == "split":
             isInt = False
             while(isInt == False):
                 slow_print("Which two numbers would you like to bet on that are")
@@ -189,30 +194,34 @@ def roulette(balance):
                     isInt = True
 
         #get number for Column bet
-        if typeOfBet == "Column":
+        if typeOfBet == "column":
             isInt = False
             while isInt == False:
                 slow_print("Which Column would you like to bet on?")
                 slow_print("Use the top numbers as the labels for each column (EX: '9')")
-                print(''''3'   '6'   '9'   '12'  '15'  '18'  '21'  '24'  '27'  '30'  '33'  '36'
+                print('''   '3'   '6'   '9'   '12'  '15'  '18'  '21'  '24'  '27'  '30'  '33'  '36'
     2     5     8     11    14    17    20    23    26    29    32    35
     1     4     7     10    13    16    19    22    25    28    31    34
                     ''')
                 column = input()
 
-                cond1 = int(SLB) % 3 != 0
-                cond2 = int(SLB) <= 3 and int(SLB) >= 36
+                cond1 = int(column) % 3 != 0
+                cond2 = int(column) <= 3 and int(column) >= 36
 
-                if cond1 or cond2 or isnt_int(SLB):
+                if isnt_int(column):
                     clear_terminal()
-                    slow_print("That is not a valid Comuln bet input.")
+                    slow_print("That is not a valid Column bet input.")
+
+                elif cond1 or cond2:
+                    clear_terminal()
+                    slow_print("That is not a valid Column bet input.")
                 
                 else:
                     column = int(column)
                     isInt = True
                     clear_terminal()
 
-        if typeOfBet == "Corner":
+        if typeOfBet == "corner":
             isInt = False
             while isInt == False:
                 slow_print("Which 4 numbers would you like to bet on that form a square on the betting table?")
@@ -235,12 +244,12 @@ def roulette(balance):
                 
 
         #get numbers for Six Line Bet
-        if typeOfBet == "Six Line Bet":
+        if typeOfBet == "six line bet":
             isInt = False
             while isInt == False:
                 slow_print("Which two lines would you like to bet on?")
                 slow_print("Use the top numbers as the labels for each line and make sure they lines are next to eachother? (EX: '12 15')")
-                print(''''3'   '6'   '9'   '12'  '15'  '18'  '21'  '24'  '27'  '30'  '33'  '36'
+                print('''   '3'   '6'   '9'   '12'  '15'  '18'  '21'  '24'  '27'  '30'  '33'  '36'
     2     5     8     11    14    17    20    23    26    29    32    35
     1     4     7     10    13    16    19    22    25    28    31    34
                     ''')
@@ -259,16 +268,16 @@ def roulette(balance):
                 else:
                     isInt = True
 
-        if typeOfBet == "Row":
+        if typeOfBet == "row":
             isInt = False
             while isInt == False:
                 slow_print("Which row would you like to bet on? (Top, Bottom, or Middle)")
                 print('''3   6   9   12  15  18  21  24  27  30  33  36
     2   5   8   11  14  17  20  23  26  29  32  35
     1   4   7   10  13  16  19  22  25  28  31  34''')
-                row = input()
+                row = input().lower()
                 
-                if row != "Top" and row != "Middle" and row != "Bottom":
+                if row != "top" and row != "middle" and row != "bottom":
                     clear_terminal()
                     slow_print("That is not a valid Row bet.")
             
@@ -276,16 +285,16 @@ def roulette(balance):
                     isInt = True
 
         #get number for Dozen bet
-        if typeOfBet == "Dozen":
+        if typeOfBet == "dozen":
             isInt = False
             while isInt == False:
                 slow_print("Which Dozen set would you like to bet on: ")
                 slow_print("Please enter either 'First' (1-12), 'Second' (13-24), or 'Third' (24-36)")
-                dozen = input()
+                dozen = input().lower()
 
-                if dozen != "First" and dozen != "Second" and dozen != "Third":
+                if dozen != "first" and dozen != "second" and dozen != "third":
                     clear_terminal()
-                    print("Those are not valid roulette numbers.")
+                    print("That is not a valid dozen bet.")
                 
                 else:
                     isInt = True
@@ -303,30 +312,30 @@ def roulette(balance):
         print()
         
         #Results for Straight Up bet
-        if typeOfBet == "Straight Up":
+        if typeOfBet == "straight Up":
             if value == Straight_Up:
                 win = True
 
         #Results for Split bet
-        if typeOfBet == "Split":
+        if typeOfBet == "split":
             if value == int(split[0]) or value == int(split[1]):
                 win = True
 
         #Results for Column Bet
-        if typeOfBet == "Column":
+        if typeOfBet == "column":
             for i in 3:
                 if (column + i) == value:
                     win = True
                     break
 
-        if typeOfBet == "Corner":
+        if typeOfBet == "corner":
             for i in corner:
                 if int(i) == value:
                     win = True
                     break
 
         #Results for Six Line Bet
-        if typeOfBet == "Six Line Bet":
+        if typeOfBet == "six Line Bet":
             for i in SLB:
                 for x in range(3):
                     if (int(i) + x) == value:
@@ -334,7 +343,7 @@ def roulette(balance):
                         break
 
         #Results for Row bet
-        if typeOfBet == "Row":
+        if typeOfBet == "row":
             if row == "Top" and value % 3 == 0:
                 win = True
             elif row == "Middle" and (value + 1) % 3 == 0:
@@ -343,7 +352,7 @@ def roulette(balance):
                 win = True
 
         #Results for Dozen bet
-        if typeOfBet == "Dozen":
+        if typeOfBet == "dozen":
             if value >= 13 and value <= 24 and dozen == "Second":
                 win = True
             elif value >= 1 and value <= 12 and dozen == "First":
@@ -352,13 +361,13 @@ def roulette(balance):
                 win = True
 
         #Results for Odd bet
-        if typeOfBet == "Odd":
+        if typeOfBet == "odd":
             if value != 0:
                 if value % 2 != 0:
                     win = True
         
         #Results for Even bet
-        if typeOfBet == "Even":
+        if typeOfBet == "even":
             if value % 2 == 0:
                 win = True
 
@@ -367,12 +376,12 @@ def roulette(balance):
                 win = True
 
         #Results for Low bet
-        if typeOfBet == "Low":
+        if typeOfBet == "low":
             if value >= 1 and value <= 18:
                 win = True
 
         #Results for High bet
-        if typeOfBet == "High":
+        if typeOfBet == "high":
             if value >= 19:
                 win = True
 
@@ -393,16 +402,13 @@ def roulette(balance):
 
         #Play again? prompt
         slow_print("Would you like to play again? Y or N ")
-        if input() == "N":
-            slow_print("Are you really sure? You might win it big. Y or N ")
-            if input() == "N":
-                slow_print("Are you 100 percent sure? Y or N ")
-                if input() == "N":
-                    slow_print("Fine. Come back any time!")
-                    break
+        if input().lower() == "n":
+            slow_print("Okay, hope to see you soon!")
+            break
         else:
             clear_terminal()
             slow_print("Great choice!")
-            slow_print("Your balance is " + str(balance) + ".")
 
     return balance
+
+roulette(1000)
