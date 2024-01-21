@@ -29,20 +29,27 @@ balance = 1000
 play = True
 while play == True:
     slow_print("Welcome" + retuner + "to the |CodeBoy Casino| floor! You have a balance of " + str(balance) + ".")
-    slow_print("Which game room would you like to enter? BlackJack, Roulette, or Craps?")
-    print()
 
-    game = (str(input())).lower()
-    clear_terminal()
+    play_game = False 
 
-    if game == "blackJack":
-        balance = bj.blackJack(balance)
-    if game == "roulette":
-        balance = rl.roulette(balance)
-    if game == "craps":
-        balance = cr.craps(balance)
-    else:
-        slow_print("Please enter a valid game room you would like to enter.")
+    while (play_game ==  False):
+        slow_print("Which game room would you like to enter? BlackJack, Roulette, or Craps?")
+        print()
+
+        game = (str(input())).lower()
+        clear_terminal()
+
+        if game == "blackJack":
+            balance = bj.blackJack(balance)
+            play_game = True
+        if game == "roulette":
+            balance = rl.roulette(balance)
+            play_game = True
+        if game == "craps":
+            balance = cr.craps(balance)
+            play_game = True
+        else:
+            slow_print("Please enter a valid game room you would like to enter.")
 
 print(balance)
         
