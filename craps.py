@@ -110,3 +110,4 @@ def mainGame():
                 numGames += 1
             else:
                 playTrue = False
+mainGame()
