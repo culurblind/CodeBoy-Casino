@@ -39,24 +39,24 @@ def blackJack(balance):
     while balance > 0:
         time.sleep(2)
         clear_terminal()
-        # initial bet
-        slow_print("Balance: " + str(balance))
-        bet = input("How much do you want to bet? ")
-        # makes sure the bet is an int
-        while isnt_int(bet):
-            slow_print("You need to type a number as a valid bet")
-            time.sleep(1.5)
+       #Setting bet
+        placeHolder = True
+        while (placeHolder):
+            slow_print("You have a balance of: " + str(balance))
+            slow_print("How much do you want to bet? ")
+            bet = input()
             clear_terminal()
-            bet = input("How much do you want to bet? ")
-        bet = int(bet)
-        balance -= bet
-        # condition if person bets more money than they have
-        while balance < 0:
-            slow_print("You do not have that much money")
-            balance += bet
-            slow_print("balance: " + str(balance))
-            bet = int(input("how much do you want to bet? "))
-            balance -= bet
+
+            if isnt_int(bet):
+                slow_print("Please enter a valid integer to bet on.")
+
+            elif int(bet) > balance:
+                slow_print("Slow your roll there pal, you don't have " + str(bet) + ".")
+
+            else:
+                placeHolder = False
+                bet = int(bet)
+                balance -= bet
 
         # player hand
         print()
@@ -405,3 +405,5 @@ def blackJack(balance):
         slow_print("You Are Broke")
     
     return balance
+
+blackJack(1000)
