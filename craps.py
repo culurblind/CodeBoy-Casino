@@ -94,18 +94,19 @@ list = []
 nextnumber = []
 
 #asks the user if they want to keep playing
-while playTrue == True:
-    if numGames == 1:
-        status = input("Do you want to play the game?")
-        if status == "Yes" or "yes":
-            playgame(gameplay)
-            numGames += 1
-        else:
-            playTrue = False
-    if numGames > 1:
-        status = input("Do you want to play again?")
-        if status == "Yes" or "yes":
-            playgame()
-            numGames += 1
-        else:
-            playTrue = False
+def mainGame():
+    while playTrue == True:
+        if numGames == 1:
+            status = input("Do you want to play the game?")
+            if status == "Yes" or "yes":
+                playgame(gameplay)
+                numGames += 1
+            else:
+                playTrue = False
+        if numGames > 1:
+            status = input("Do you want to play again?")
+            if status == "Yes" or "yes":
+                playgame()
+                numGames += 1
+            else:
+                playTrue = False
