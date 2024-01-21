@@ -30,23 +30,13 @@ def dicetotal():
     return dice1 + dice2
 
 
-
-slow_print("welcome to Craps! Your goal is to see whether the dice will roll a winning number. In the first round,")
-slow_print("if you roll a 7 or 11, you win. If you roll a 2, 3, or 12, you automatically lose")
-slow_print("any other combination of values will be added to the point, and you will continue rerolling until you get that number again or roll a 7, in which you lose")
-time.sleep(1)
-clear_terminal()
-
-
-balance = 1000
-gameplay = True
-
-def craps():
+def craps(balance):
     slow_print("welcome to Craps! Your goal is to see whether the dice will roll a winning number. In the first round,")
     slow_print("if you roll a 7 or 11, you win. If you roll a 2, 3, or 12, you automatically lose")
     slow_print("any other combination of values will be added to the point, and you will continue rerolling until you get that number again or roll a 7, in which you lose")
     time.sleep(1)
     clear_terminal()
+
     gameplay = True
     while gameplay == True:
         time.sleep(1)
@@ -121,5 +111,6 @@ def craps():
                 slow_print("Thanks for playing craps!")
             else:
                 slow_print("Type y or n")
-        
+
+    return balance   
 
