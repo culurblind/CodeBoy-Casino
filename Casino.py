@@ -28,13 +28,13 @@ retuner = " "
 balance = 1000
 play = True
 while play == True:
+    clear_terminal()
     slow_print("Welcome" + retuner + "to the |CodeBoy Casino| floor! You have a balance of " + str(balance) + ".")
 
     play_game = False 
 
     while (play_game ==  False):
         slow_print("Which game room would you like to enter? BlackJack, Roulette, or Craps?")
-        print()
 
         game = (str(input())).lower()
         clear_terminal()
