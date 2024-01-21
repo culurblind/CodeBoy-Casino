@@ -1,6 +1,10 @@
 import Roulette as rl
 import BlackJack as bj
+<<<<<<< HEAD
 #import craps as cr
+=======
+import Craps as cr
+>>>>>>> 0b3f462a1b82a032afbdeba11d1637e5364b7983
 import time
 import os
 
