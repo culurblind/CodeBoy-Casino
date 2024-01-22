@@ -55,8 +55,10 @@ while play == True:
             play_game = True
         
         if balance <= 0:
+            time.sleep(1.5)
             slow_print("You are broke!")
             play_game = False
+            play = False
 
     retuner = " back "
 
