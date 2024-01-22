@@ -44,6 +44,12 @@ wheel = {
     36 : "Red"
 }
 
+split_num = [1, 2], [1, 4], [2, 5], [3, 6], [4, 7], [4, 5], [5, 8], [5, 6], [6, 9],
+[7, 10], [7, 8], [8, 11], [8, 9], [9, 12], [10, 13], [10, 11], [11, 14], [11, 12], [12, 15],
+[13, 16], [13, 14], [14, 17], [14, 15], [15, 18], [16, 19], [16, 17], [17, 20], [17, 18], [18, 21], 
+[19, 22], [19, 20], [20, 23], [20, 21], [21, 24], [22, 25], [22, 23], [23, 26], [23, 24], [24, 27], 
+[27, 30], [28, 31], [28, 29], [29, 32], [29, 30], [30, 33], [31, 34], [31, 32], [32, 35], [32, 33], [33, 36]
+
 bets = {
     "straight up" : 36,
     "split" : 18,
@@ -175,23 +181,24 @@ def roulette(balance):
     2   5   8   11  14  17  20  23  26  29  32  35
     1   4   7   10  13  16  19  22  25  28  31  34
                     ''')
-                split = input().split(" ")
+                get = input().split(" ")
+                
 
-                if len(split) != 2:
+                if len(get) != 2:
                     clear_terminal()
                     print("That is not valid. Please enter TWO valid roulette numbers.")
 
-                elif isnt_int(split[0]) or isnt_int(split[1]):
+                elif isnt_int(get[0]) or isnt_int(get[1]):
                     clear_terminal()
-                    print("Those are not valid roulette numbers.")
+                    print("Those are not valid roulette Numbers.")
 
-                elif int(split[0]) > 36  or int(split[0]) < 1 or int(split[1]) > 36  or int(split[1]) < 1 or (abs(int(split[0]) - int(split[1])) != 3) or (abs(int(split[0]) - int(split[1])) != 1):
-                        clear_terminal()
-                        print("Those are not valid roulette numbers.")
-                        print() 
                 else:
-                    print()
-                    isInt = True
+                    get.sort()
+                    for l in range(0, 39):
+                        print(split_num[l][0])
+                        #if split_num[l][0] == split[0] and split_num[l][1] == split[1]:
+                            #isInt = True
+
 
         #get number for Column bet
         if typeOfBet == "column":
@@ -335,7 +342,7 @@ def roulette(balance):
                     break
 
         #Results for Six Line Bet
-        if typeOfBet == "six Line Bet":
+        if typeOfBet == "six line bet":
             for i in SLB:
                 for x in range(3):
                     if (int(i) + x) == value:
@@ -344,20 +351,20 @@ def roulette(balance):
 
         #Results for Row bet
         if typeOfBet == "row":
-            if row == "Top" and value % 3 == 0:
+            if row == "top" and value % 3 == 0:
                 win = True
-            elif row == "Middle" and (value + 1) % 3 == 0:
+            elif row == "middle" and (value + 1) % 3 == 0:
                 win = True
-            elif row == "Bottom" and (value + 2) % 3 == 0:
+            elif row == "bottom" and (value + 2) % 3 == 0:
                 win = True
 
         #Results for Dozen bet
         if typeOfBet == "dozen":
-            if value >= 13 and value <= 24 and dozen == "Second":
+            if value >= 13 and value <= 24 and dozen == "second":
                 win = True
-            elif value >= 1 and value <= 12 and dozen == "First":
+            elif value >= 1 and value <= 12 and dozen == "first":
                 win = True
-            elif value >= 25 and dozen == "Third":
+            elif value >= 25 and dozen == "third":
                 win = True
 
         #Results for Odd bet
@@ -412,3 +419,5 @@ def roulette(balance):
             slow_print("Great choice!")
 
     return balance
+
+roulette(1000)
