@@ -72,8 +72,7 @@ def craps(balance):
             slow_print("You lost the bet, the dice rolled " + str(diceNum))
         
         else:
-            slow_print("you rolled " + str(diceNum))
-            input("Press enter to roll again.")
+            print("you rolled " + str(diceNum) + " the die will reroll")
             #true/flase for if a number is rerolled
             pastNumber = False
 
@@ -97,7 +96,7 @@ def craps(balance):
                 else:
                     slow_print("You rolled, " + str(newNum) + " the dice will roll again")
             
-                slow_print("Your balance is now: " + str(balance))
+            slow_print("Your balance is now: " + str(balance))
 
         print()
         status = input("Do you want to play again? (y/n) ")
@@ -112,5 +111,9 @@ def craps(balance):
                 slow_print("Thanks for playing craps!")
             else:
                 slow_print("Type y or n")
+        
+        if balance <= 0:
+            slow_print("You are out of money!")
+            gameplay = False
 
-    return balance   
+    return balance
