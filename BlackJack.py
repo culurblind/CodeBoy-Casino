@@ -39,7 +39,7 @@ def blackJack(balance):
     while balance > 0:
         time.sleep(2)
         clear_terminal()
-       #Setting bet
+        #Setting bet
         placeHolder = True
         while (placeHolder):
             slow_print("You have a balance of: " + str(balance))
@@ -397,11 +397,22 @@ def blackJack(balance):
                             turn = False
                 else:
                     slow_print("your cards are not the same, you can not split")
+        
+        print()
+        status = input("Do you want to play again? (y/n) ")
+        statusLoop = True
 
-    # final statements to say ran out of money
+        while statusLoop:
+            if status == "y":
+                statusLoop = False
+            elif status == "n":
+                statusLoop = False
+                slow_print("Thanks for playing BlackJack!")
+                break
+            else:
+                slow_print("Type y or n")
+
     if balance <= 0:
-        print()
-        print()
-        slow_print("You Are Broke")
-    
+        slow_print("You are out of money!")
+
     return balance
