@@ -398,17 +398,21 @@ def blackJack(balance):
                 else:
                     slow_print("your cards are not the same, you can not split")
         
-            print()
-            status = input("Do you want to play again? (y/n) ")
-            statusLoop = True
+        print()
+        status = input("Do you want to play again? (y/n) ")
+        statusLoop = True
 
-            while statusLoop:
-                if status == "y":
-                    statusLoop = False
-                elif status == "n":
-                    statusLoop = False
-                    slow_print("Thanks for playing BlackJack!")
-                    break
-                else:
-                    slow_print("Type y or n")
+        while statusLoop:
+            if status == "y":
+                statusLoop = False
+            elif status == "n":
+                statusLoop = False
+                slow_print("Thanks for playing BlackJack!")
+                break
+            else:
+                slow_print("Type y or n")
+
+    if balance <= 0:
+        slow_print("You are out of money!")
+
     return balance
