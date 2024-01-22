@@ -420,4 +420,3 @@ def roulette(balance):
 
     return balance
 
-roulette(1000)
