@@ -34,6 +34,7 @@ def craps(balance):
     slow_print("Welcome to Craps! Your goal is to see whether the dice will roll a winning number.")
     slow_print("In the first round, if you roll a 7 or 11, you win. If you roll a 2, 3, or 12, you automatically lose.")
     slow_print("Any other combination of values will be added to the point, and you will continue rerolling until you get that number again or roll a 7, in which you lose")
+    print()
     time.sleep(3)
 
     gameplay = True
@@ -79,6 +80,9 @@ def craps(balance):
             print()
             while pastNumber == False:
                 time.sleep(0.55)
+                input("Press enter to roll.")
+                clear_terminal()
+                slow_print("Rolling... Rolling... Rolling... ", 0.1)
                 newNum = dicetotal()
                 if newNum == diceNum:
                     slow_print("You rerolled " + str(diceNum) + " again! You win!")
@@ -91,9 +95,8 @@ def craps(balance):
                     pastNumber = True
                     break
                 else:
-                    slow_print("You rolled, " + str(newNum))
-                    input("Press enter to roll again.")
-
+                    slow_print("You rolled, " + str(newNum) + " the dice will roll again")
+            
                 slow_print("Your balance is now: " + str(balance))
 
         print()
@@ -111,5 +114,3 @@ def craps(balance):
                 slow_print("Type y or n")
 
     return balance   
-
-
