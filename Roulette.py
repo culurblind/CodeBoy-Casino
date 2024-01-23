@@ -423,5 +423,3 @@ def roulette(balance):
             slow_print("Great choice!")
 
     return balance
-
-roulette(1000)
