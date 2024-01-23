@@ -59,7 +59,7 @@ def craps(balance):
                 balance -= bet
 
         diceNum = dicetotal()
-        input("Press enter to roll.")
+        input("Alright, betting " + str(bet) + ". Press enter to roll.")
         clear_terminal()
         slow_print("Rolling... Rolling... Rolling... ", 0.1)
         clear_terminal()
@@ -99,10 +99,10 @@ def craps(balance):
             slow_print("Your balance is now: " + str(balance))
 
         print()
-        status = input("Do you want to play again? (y/n) ")
         statusLoop = True
 
         while statusLoop:
+            status = input("Do you want to play again? (y/n) ")
             if status == "y":
                 statusLoop = False
             elif status == "n":
@@ -110,7 +110,8 @@ def craps(balance):
                 statusLoop = False
                 slow_print("Thanks for playing craps!")
             else:
-                slow_print("Type y or n")
+                clear_terminal()
+                slow_print("That is not a valid input.")
         
         if balance <= 0:
             slow_print("You are out of money!")
