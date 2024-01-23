@@ -44,11 +44,7 @@ wheel = {
     36 : "Red"
 }
 
-split_num = [1, 2], [1, 4], [2, 5], [3, 6], [4, 7], [4, 5], [5, 8], [5, 6], [6, 9],
-[7, 10], [7, 8], [8, 11], [8, 9], [9, 12], [10, 13], [10, 11], [11, 14], [11, 12], [12, 15],
-[13, 16], [13, 14], [14, 17], [14, 15], [15, 18], [16, 19], [16, 17], [17, 20], [17, 18], [18, 21], 
-[19, 22], [19, 20], [20, 23], [20, 21], [21, 24], [22, 25], [22, 23], [23, 26], [23, 24], [24, 27], 
-[27, 30], [28, 31], [28, 29], [29, 32], [29, 30], [30, 33], [31, 34], [31, 32], [32, 35], [32, 33], [33, 36]
+split_num = [1, 2], [1, 4], [2, 5], [3, 6], [4, 7], [4, 5], [5, 8], [5, 6], [6, 9], [7, 10], [7, 8], [8, 11], [8, 9], [9, 12], [10, 13], [10, 11], [11, 14], [11, 12], [12, 15], [13, 16], [13, 14], [14, 17], [14, 15], [15, 18], [16, 19], [16, 17], [17, 20], [17, 18], [18, 21],  [19, 22], [19, 20], [20, 23], [20, 21], [21, 24], [22, 25], [22, 23], [23, 26], [23, 24], [24, 27], [27, 30], [28, 31], [28, 29], [29, 32], [29, 30], [30, 33], [31, 34], [31, 32], [32, 35], [32, 33], [33, 36]
 
 bets = {
     "straight up" : 36,
@@ -181,23 +177,31 @@ def roulette(balance):
     2   5   8   11  14  17  20  23  26  29  32  35
     1   4   7   10  13  16  19  22  25  28  31  34
                     ''')
-                get = input().split(" ")
+                split = input().split(" ")
                 
 
-                if len(get) != 2:
+                if len(split) != 2:
                     clear_terminal()
-                    print("That is not valid. Please enter TWO valid roulette numbers.")
+                    print("That is not valid. Please enter TWO valid Split numbers.")
+                    continue
 
-                elif isnt_int(get[0]) or isnt_int(get[1]):
+                if isnt_int(split[0]) or isnt_int(split[1]):
                     clear_terminal()
-                    print("Those are not valid roulette Numbers.")
+                    print("Those are not valid Split numbers.")
+                    continue
 
-                else:
-                    get.sort()
-                    for l in range(0, 39):
-                        print(split_num[l][0])
-                        #if split_num[l][0] == split[0] and split_num[l][1] == split[1]:
-                            #isInt = True
+                split[0] = int(split[0])
+                split[1] = int(split[1])
+                split.sort()
+                for i in range(0, (len(split_num) - 1)):
+                    if split_num[i][0] == split[0] and split_num[i][1] == split[1]:
+                        isInt = True
+                        break
+                clear_terminal()
+                print("Those are not valid Split numbers.")
+
+                
+                
 
 
         #get number for Column bet
@@ -420,3 +424,4 @@ def roulette(balance):
 
     return balance
 
+roulette(1000)
