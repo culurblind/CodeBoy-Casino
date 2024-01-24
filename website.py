@@ -29,10 +29,11 @@ def craps():
     balance = result
     return render_template('craps.html', result = result)
 
-@app.route('/')
-def index():
-    balance = balance
-    return render_template('index.html', balance=balance)
+# We need to make code to make the balance accesible by the JS file
+#@app.route('/')
+#def index():
+#    balance = balance
+#    return render_template('index.html', balance=balance)
 
 if __name__ == '__main__':
     app.run(debug=True)
