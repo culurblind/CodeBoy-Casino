@@ -10,13 +10,13 @@ def home():
 def roulette():
     return render_template('roulette.html')
 
-#@app.route('/blackjack')
-#def blackjack():
-    #return render_template('blackjack.html')
+@app.route('/blackjack')
+def blackjack():
+    return render_template('blackjack.html')
 
-#@app.route('/craps')
-#def craps():
-    #return render_template('craps.html')
+@app.route('/craps')
+def craps():
+    return render_template('craps.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
