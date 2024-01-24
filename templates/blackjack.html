@@ -2,10 +2,11 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='blackjack.css') }}">
+    <script src="{{ url_for('static', filename='home.js') }}"></script>
 </head>
 
 <body>
     <h1> BlackJack </h1>
     <p>{{ result }}</p>
-    <button id = "BackButton"> Back </button> 
-<body>
+    <button id="BackButton" onclick="handleButtonClick('/home')"> back </button>
+    <body>
