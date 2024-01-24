@@ -12,6 +12,11 @@ balance = 1000
 def home():
     return render_template('home.html')
 
+# for back button
+@app.route('/home')
+def returnHome():
+    return render_template('home.html')
+
 @app.route('/roulette')
 def roulette():
     #result = rl.roulette(balance)
