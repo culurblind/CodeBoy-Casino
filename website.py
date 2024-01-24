@@ -25,9 +25,9 @@ def roulette():
 
 @app.route('/blackjack')
 def blackjack():
-    result = bj.blackJack(balance)
+    #result = bj.blackJack(balance)
     #balance = result
-    return render_template('blackjack.html', result = result)
+    return render_template('blackjack.html')#, result = result)
 
 @app.route('/craps')
 def craps():
