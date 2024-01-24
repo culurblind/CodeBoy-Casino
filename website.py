@@ -6,9 +6,9 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
-#@app.route('/roulette')
-#def roulette():
-    #return render_template('roulette.html')
+@app.route('/roulette')
+def roulette():
+    return render_template('roulette.html')
 
 #@app.route('/blackjack')
 #def blackjack():
