@@ -1,6 +1,7 @@
 body {
     text-align:center;
-    background-color:green;
+    background-image:url("https://png.pngtree.com/background/20230617/original/pngtree-abstract-background-with-aces-cards-chips-and-dice-surrounding-3d-roulette-picture-image_3706188.jpg");
+    background-size:cover;
     color:white;
     font-size:25px;
   }
