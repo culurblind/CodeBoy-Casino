@@ -5,23 +5,25 @@ import BlackJack as bj
 
 app = Flask(__name__)
 
+balance = 1000
+
 @app.route('/')
 def home():
     return render_template('home.html')
 
 @app.route('/roulette')
 def roulette():
-    result = rl.roulette(1000)
+    result = rl.roulette(balance)
     return render_template('roulette.html', result = result)
 
 @app.route('/blackjack')
 def blackjack():
-    result = bj.blackJack(1000)
+    result = bj.blackJack(balance)
     return render_template('blackjack.html', result = result)
 
 @app.route('/craps')
 def craps():
-    result = cr.craps(1000)
+    result = cr.craps(balance)
     return render_template('craps.html', result = result)
 
 if __name__ == '__main__':
