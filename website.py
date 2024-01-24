@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from flask_socketio import SocketIO
 import Roulette as rl
 import Craps as cr
@@ -25,9 +25,9 @@ def roulette():
 
 @app.route('/blackjack')
 def blackjack():
-    #result = bj.blackJack(balance)
+    result = bj.blackJack(balance)
     #balance = result
-    return render_template('blackjack.html')#, result = result)
+    return render_template('blackjack.html', result = result)
 
 @app.route('/craps')
 def craps():
@@ -35,11 +35,9 @@ def craps():
     #balance = result
     return render_template('craps.html')#, result = result)
 
-# We need to make code to make the balance accesible by the JS file
-#@app.route('/')
-#def index():
-#    balance = balance
-#    return render_template('index.html', balance=balance)
+@app.route('/get_balance', methods=['GET'])
+def get_balance():
+    return jsonify({'balance': balance})
 
 if __name__ == '__main__':
     app.run(debug=True)

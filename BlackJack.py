@@ -90,6 +90,7 @@ def blackJack(balance):
 
         # case 1 - black jack
         if sum == 21:
+            print()
             slow_print("Black Jack!")
             # dealer card reveal
             while dealerSum < 17:
@@ -197,6 +198,8 @@ def blackJack(balance):
                     slow_print("you already hit you cannot double now")
                 else:
                     bet *= 2
+                    slow_print(balance)
+                    print()
                     # one extra card for the double
                     extraCard = cardKeys[random.randint(0, 12)]
                     slow_print("Player Card: " + extraCard)
@@ -214,6 +217,7 @@ def blackJack(balance):
                             turn = False
                             switch = False
                     slow_print("total = " + str(sum))
+                    print()
                     # if no bust then run this code
                     if switch:
                         # dealer card reveal
@@ -408,7 +412,7 @@ def blackJack(balance):
             elif status == "n":
                 statusLoop = False
                 slow_print("Thanks for playing BlackJack!")
-                break
+                return balance
             else:
                 slow_print("Type y or n")
 

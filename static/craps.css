@@ -5,6 +5,10 @@ body {
     color:white;
     font-size:25px;
   }
+  
+  h2 {
+    color:blue;
+  }
 
   button {
     width:50px;
