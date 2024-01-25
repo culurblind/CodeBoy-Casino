@@ -1,5 +1,6 @@
 # website.py is the main code to connect the back end code with the front end code and open a local link for the website
 
+from flask import Flask, render_template, jsonify
 import programs.Roulette as rl
 import programs.Craps as cr
 import programs.BlackJack as bj
