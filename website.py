@@ -2,9 +2,9 @@
 
 from flask import Flask, render_template, jsonify
 from flask_socketio import SocketIO
-import Roulette as rl
-import Craps as cr
-import BlackJack as bj
+import programs.Roulette as rl
+import programs.Craps as cr
+import programs.BlackJack as bj
 
 app = Flask(__name__)
 
@@ -30,16 +30,6 @@ def blackjack():
 @app.route('/craps')
 def craps():
     return render_template('craps.html')
-
-@app.route('/get_balance', methods=['GET'])
-def get_balance():
-    return jsonify({'balance': balance})
-
-@app.route('/game_type/<gameType>/data_type/<dataType>/raw_data/<rawData>', methods=['GET'])
-def interact(gameType, dataType, rawData):
-    # Here, this should return any output to the user, AFTER dealing with all the data youve been given
-    return str(gameType) + " " + str(dataType) + " " + str(rawData);
-
 
 if __name__ == '__main__':
     app.run(debug=True)
