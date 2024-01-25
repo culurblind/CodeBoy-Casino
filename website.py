@@ -35,5 +35,11 @@ def craps():
 def get_balance():
     return jsonify({'balance': balance})
 
+@app.route('/game_type/<gameType>/data_type/<dataType>/raw_data/<rawData>', methods=['GET'])
+def interact(gameType, dataType, rawData):
+    # Here, this should return any output to the user, AFTER dealing with all the data youve been given
+    return str(gameType) + " " + str(dataType) + " " + str(rawData);
+
+
 if __name__ == '__main__':
     app.run(debug=True)
