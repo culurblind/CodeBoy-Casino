@@ -1,40 +1,57 @@
-# website.py is the main code to connect the back end code with the front end code and open a local link for the website
-
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import programs.Roulette as rl
 import programs.Craps as cr
 import programs.BlackJack as bj
+import os
 
 app = Flask(__name__)
 
 balance = 1000
 
+#clear_terminal() func clears the terminal after every round
+def clear_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 @app.route('/')
 def home():
     return render_template('home.html')
 
-#for back button
 @app.route('/home')
-def returnHome():
+def return_home():
     return render_template('home.html')
 
 @app.route('/roulette')
 def roulette():
-    # Call the function/method that runs the roulette game
-    result = rl.roulette(balance)
-    return render_template('roulette.html', result=result)
+    return render_template('roulette.html', result=balance)
 
 @app.route('/blackjack')
 def blackjack():
-    # Call the function/method that runs the blackjack game
-    result = bj.blackJack(balance)
-    return render_template('blackjack.html', result=result)
+    return render_template('blackjack.html', result=balance)
 
 @app.route('/craps')
 def craps():
-    #Call the function/method that runs the craps game
-    result = cr.craps(balance)
-    return render_template('craps.html', result=result)
+    return render_template('craps.html', result=balance)
+
+@app.route('/execute_blackjack', methods=['GET'])
+def execute_blackjack():
+    # Execute the bj.blackjack() method
+    clear_terminal()
+    bj.blackJack(balance)
+    return jsonify({'result': balance})
+
+@app.route('/execute_roulette', methods=['GET'])
+def execute_roulette():
+    # Execute the rl.roulette() method
+    clear_terminal()
+    rl.roulette(balance)
+    return jsonify({'result': balance})
+
+@app.route('/execute_craps', methods=['GET'])
+def execute_craps():
+    # Execute the cr.craps() method
+    clear_terminal()
+    cr.craps(balance)
+    return jsonify({'result': balance})
 
 @app.route('/get_balance', methods=['GET'])
 def get_balance():
