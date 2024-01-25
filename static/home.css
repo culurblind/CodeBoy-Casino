@@ -21,7 +21,7 @@ body {
     background-image: url("https://play-lh.googleusercontent.com/Y7xzS-pLALhgbOBYTrjxLSebNsbsQ-htfFgZ5W4mew98zmeg-SEB948j_NdvBXZ6xxg");
   }
 
-  button {
+  .imgBTN {
     width: 400px;
     height: 400px;
     background-size: contain;
@@ -31,4 +31,21 @@ body {
     border-radius: 50px;
     margin-right: 75px;
     margin-left: 75px;
+  }
+
+  textarea {
+    display:block;
+    padding: 10px;
+    width: 400px;
+    height: 400px;
+    margin:auto;
+  }
+
+  #goBTN {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin:auto;
+
   }
