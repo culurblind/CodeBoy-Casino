@@ -1,3 +1,7 @@
+# BlackJack.py is a python file that runs the back end code for the casino game black jack
+# it contains functions that print text slowly, clear the terminal, check if an input is a number, and a list of the cards associated with values 
+# and the main function where the actual game runs, returning the new balance
+
 # import statements
 import random
 import time

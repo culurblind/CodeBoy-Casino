@@ -1,4 +1,7 @@
-#Roulette
+# Roulette.py is a python file that runs the back end code for the casino game roulette
+# it contains functions that print text slowly, clear the terminal, check if an input is a number, and a list of the wheel
+# and the main function where the actual game runs, returning the new balance
+
 import random
 import time
 import os

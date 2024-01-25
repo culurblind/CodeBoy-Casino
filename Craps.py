@@ -1,3 +1,7 @@
+# Craps.py is a python file that runs the back end code for the casino game craps
+# it contains functions that print text slowly, clear the terminal, check if an input is a number, and also a method for rolling the dice 
+# and the main function where the actual game runs, returning the new balance
+
 import random
 import time
 import os
