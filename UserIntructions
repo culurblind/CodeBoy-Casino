@@ -1,0 +1,5 @@
+To use CodeBoy Casino you need to click on website.py. From there then you can run it and tou will see in the terminal
+a link that should say "Running on http://127.0.0.1:5000." Once that link is clicked you will see the 3 games as buttons
+click on the desired game you want to play and go back to the vs code terminal. In the terminal you can play the game and 
+once the game is over go back to the site to see the new balance, and go back to the home screen to select another game.
+For the most optimal experiance, we would recomend haveing the vscode terminal side by side with the actual website
