@@ -1,7 +1,6 @@
 # website.py is the main code to connect the back end code with the front end code and open a local link for the website
 
-from flask import Flask, render_template, jsonify
-from flask_socketio import SocketIO
+from flask import Flask, render_template
 import programs.Roulette as rl
 import programs.Craps as cr
 import programs.BlackJack as bj
@@ -14,22 +13,23 @@ balance = 1000
 def home():
     return render_template('home.html')
 
-# for back button
-@app.route('/home')
-def returnHome():
-    return render_template('home.html')
-
 @app.route('/roulette')
 def roulette():
-    return render_template('roulette.html')
+    # Call the function/method that runs the roulette game
+    result = rl.roulette(balance)
+    return render_template('roulette.html', result=result)
 
 @app.route('/blackjack')
 def blackjack():
-    return render_template('blackjack.html')
+    # Call the function/method that runs the blackjack game
+    result = bj.blackjack(balance)
+    return render_template('blackjack.html', result=result)
 
 @app.route('/craps')
 def craps():
-    return render_template('craps.html')
+    # Call the function/method that runs the craps game
+    result = cr.craps(balance)
+    return render_template('craps.html', result=result)
 
 if __name__ == '__main__':
     app.run(debug=True)
