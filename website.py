@@ -13,7 +13,7 @@ balance = 1000
 def home():
     return render_template('home.html')
 
-# for back button
+#for back button
 @app.route('/home')
 def returnHome():
     return render_template('home.html')
@@ -32,7 +32,7 @@ def blackjack():
 
 @app.route('/craps')
 def craps():
-    # Call the function/method that runs the craps game
+    #Call the function/method that runs the craps game
     result = cr.craps(balance)
     return render_template('craps.html', result=result)
 
