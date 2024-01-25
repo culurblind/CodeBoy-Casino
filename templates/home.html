@@ -1,24 +1,30 @@
-<!-- home.html runs the front end code for main screen-->
+<!-- home.html runs the front end code for the main screen -->
 
 <!DOCTYPE html>
 
 <head>
-
    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}">
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
    <script src="{{ url_for('static', filename='home.js') }}"></script>   
-
 </head>
 
 <html lang="en">
 <body>
-
   <h1>CODEBOY CASINO</h1>
-  <h2 id="balance counter">Balance: temp</h2>
+  <h2 id="balance-counter">Balance: <span id="balance-value">{{ result }}</span></h2>
 
    <button class="imgBTN" id="Button1" onclick="handleButtonClick('/blackjack')"></button>
    <button class="imgBTN" id="Button2" onclick="handleButtonClick('/roulette')"></button>
    <button class="imgBTN" id="Button3" onclick="handleButtonClick('/craps')"></button>
 
+   <script>
+      $(document).ready(function() {
+         // Make an asynchronous request to the server to get the updated balance
+         $.get('/get_balance', function(data) {
+            // Update the balance value on the page
+            $('#balance-value').text(data.balance);
+         });
+      });
+   </script>
 </body>
-
 </html>

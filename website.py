@@ -36,22 +36,25 @@ def craps():
 def execute_blackjack():
     # Execute the bj.blackjack() method
     clear_terminal()
-    bj.blackJack(balance)
-    return jsonify({'result': balance})
+    global balance
+    balance = bj.blackJack(balance)
+    return jsonify({'balance': balance})
 
 @app.route('/execute_roulette', methods=['GET'])
 def execute_roulette():
     # Execute the rl.roulette() method
     clear_terminal()
-    rl.roulette(balance)
-    return jsonify({'result': balance})
+    global balance
+    balance = rl.roulette(balance)
+    return jsonify({'balance': balance})
 
 @app.route('/execute_craps', methods=['GET'])
 def execute_craps():
     # Execute the cr.craps() method
     clear_terminal()
-    cr.craps(balance)
-    return jsonify({'result': balance})
+    global balance
+    balance = cr.craps(balance)
+    return jsonify({'balance': balance})
 
 @app.route('/get_balance', methods=['GET'])
 def get_balance():
