@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 balance = 1000
 
-#clear_terminal() func clears the terminal after every round
+# clear_terminal() function clears the terminal after every round
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
