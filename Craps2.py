@@ -15,7 +15,11 @@ def dicetotal():
 
 def craps(balance, bet):
 
-    gameplay = True
+    if balance <= 0:
+        gameplay = False
+    else:
+        gameplay = True
+
     while gameplay == True:
 
         balance -= bet
@@ -24,15 +28,15 @@ def craps(balance, bet):
 
         if diceNum == 7 or diceNum == 11:
             balance += 2 * bet
+            return balance
         
         elif diceNum == 2 or diceNum == 3 or diceNum == 12:
-            balance += 0
+            balace += 0
         
         else:
             #true/flase for if a number is rerolled
             pastNumber = False
 
-            print()
             while pastNumber == False:
                 newNum = dicetotal()
                 if newNum == diceNum:
@@ -43,11 +47,5 @@ def craps(balance, bet):
                     balance - 2 * bet
                     pastNumber = True
                     break
-
-        print()
-        statusLoop = True
-        
-        if balance <= 0:
-            gameplay = False
-
-    return balance
+                else:
+                    pastNumber = False
