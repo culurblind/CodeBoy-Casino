@@ -1,3 +1,7 @@
+# website.py creates combines out front end and back end code together and
+# outputs a website as a visual while also running all the individual games 
+# in a VS Code terminal
+
 from flask import Flask, render_template, jsonify, request
 import programs.Roulette as rl
 import programs.Craps as cr
